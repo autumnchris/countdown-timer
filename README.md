@@ -2,6 +2,10 @@
 
 ---
 
+## Demo
+
+View project demo at [https://autumnchris.github.io/countdown-timer](https://autumnchris.github.io/countdown-timer).
+
 ## Installation
 
 ```
