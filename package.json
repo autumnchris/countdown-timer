@@ -1,7 +1,7 @@
 {
   "name": "countdown-timer",
   "version": "1.0.0",
-  "description": "",
+  "description": "An app that requires the user to submit a future date which will then display a timer counting down to that date.",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",

@@ -1,5 +1,7 @@
 # Countdown Timer
 
+An app that requires the user to submit a future date which will then display a timer counting down to that date.
+
 ---
 
 ## Demo
