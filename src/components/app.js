@@ -14,6 +14,12 @@ export default class App extends Component {
     };
   }
 
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
   openModal() {
     this.setState({
       modalStyle: {display: 'block'}
@@ -55,16 +61,16 @@ export default class App extends Component {
                 <form>
                   <div className="form-group">
                     <label htmlFor="date-input">Date:</label>
-                    <input type="text" name="dateInput" value={this.state.dateInput} placeholder="MM-DD-YYYY" id="date-input" required />
+                    <input type="text" name="dateInput" onChange={(event) => this.handleChange(event)} value={this.state.dateInput} placeholder="MM-DD-YYYY" id="date-input" required />
                   </div>
                   <div className="form-group">
                     <label htmlFor="time-input">Time:</label>
-                    <input type="text" name="timeInput" value={this.state.timeInput} placeholder="hh:mm" id="time-input" required />
+                    <input type="text" name="timeInput" onChange={(event) => this.handleChange(event)} value={this.state.timeInput} placeholder="hh:mm" id="time-input" required />
                   </div>
                   <div className="form-group">
                     <fieldset>
                       <legend>AM/PM:</legend>
-                      <select name="ampm" value={this.state.ampm}>
+                      <select name="ampm" onChange={(event) => this.handleChange(event)} value={this.state.ampm}>
                         <option value="am">AM</option>
                         <option value="pm">PM</option>
                       </select>
