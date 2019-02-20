@@ -8,7 +8,10 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="body"></div>
+      <div className="body">
+          {/* FOOTER */}
+          <footer>Coded by <a href="https://autumnbullard-portfolio.herokuapp.com" target="_blank">Autumn Bullard</a></footer>
+      </div>
     );
   }
 }
