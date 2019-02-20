@@ -14,6 +14,27 @@ export default class App extends Component {
     };
   }
 
+  openModal() {
+    this.setState({
+      modalStyle: {display: 'block'}
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      modalStyle: {display: 'none'}
+    });
+  }
+
+  componentDidMount() {
+    window.addEventListener('click', (event) => {
+
+      if (event.target.id === 'modal') {
+        this.closeModal();
+      }
+    });
+  }
+
   render() {
     return (
       <div className="body">
@@ -22,7 +43,7 @@ export default class App extends Component {
           <h1>Countdown Timer</h1>
           <div className="button-group">
             <button type="button" className="clear">Clear</button>
-            <button type="button" className="settings">Settings</button>
+            <button type="button" className="settings" onClick={() => this.openModal()}>Settings</button>
           </div>
         </header>
         <main>
@@ -53,7 +74,7 @@ export default class App extends Component {
                   <p className="message error-message" style={this.state.errorStyle}><span className="fa fa-exclamation-circle fa-lg fa-fw"></span> {this.state.errorMessage}</p>
                   <div className="button-group">
                     <input type="submit" value="Start" />
-                    <input type="button" value="Cancel" />
+                    <input type="button" onClick={() => this.closeModal()} value="Cancel" />
                   </div>
                 </form>
               </div>
