@@ -64,7 +64,7 @@ export default class App extends Component {
           minutes = parseInt(distance % (60 * 60) / (60), 10);
           seconds = parseInt(distance % 60, 10);
           this.setState({
-            countdown: `Countdown ends in ${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`
+            countdown: `Countdown ends in ${days} Days, ${hours} Hours, ${minutes} Minutes, and ${seconds} Seconds`
           });
         }
         else {
