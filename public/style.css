@@ -1,0 +1,220 @@
+html,
+body,
+header,
+main,
+footer,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+span,
+button,
+form,
+fieldset,
+legend,
+label,
+input,
+select,
+option,
+p,
+a {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: #333;
+  font-family: "Noto Sans", Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  text-align: left; }
+
+html {
+  height: 100%; }
+
+body {
+  font-size: 0.9rem;
+  min-height: 100%;
+  padding: 0 20px;
+  position: relative; }
+
+a,
+a:visited,
+a:active,
+a:focus {
+  color: inherit;
+  letter-spacing: inherit;
+  text-decoration: none; }
+  a:hover,
+  a:visited:hover,
+  a:active:hover,
+  a:focus:hover {
+    text-decoration: underline; }
+
+span {
+  color: inherit;
+  letter-spacing: inherit; }
+
+input {
+  text-align: left; }
+
+button,
+button:hover,
+button:active,
+button:focus,
+input[type=submit],
+input[type=submit]:hover,
+input[type=submit]:active,
+input[type=submit]:focus,
+input[type=button],
+input[type=button]:hover,
+input[type=button]:active,
+input[type=button]:focus,
+select {
+  cursor: pointer; }
+
+*:focus {
+  box-shadow: 0 0 3px 3px rgba(65, 180, 250, 0.8);
+  outline: none; }
+
+.message {
+  border-radius: 5px;
+  line-height: 20px;
+  margin: 15px auto;
+  max-width: 800px;
+  padding: 15px 10px;
+  text-align: center;
+  width: 100%; }
+
+html {
+  background: #000;
+  background: linear-gradient(120deg, #000, #2e2e2e) fixed; }
+  html header {
+    background: #333;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%; }
+    html header h1 {
+      color: #fff;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      padding: 15px; }
+    html header .button-group {
+      padding-right: 8px; }
+      html header .button-group button,
+      html header .button-group button:hover,
+      html header .button-group button:active,
+      html header .button-group button:focus {
+        background: #00ffcc;
+        border-radius: 3px;
+        font-size: 0.8rem;
+        margin: 8px 4px;
+        padding: 7px; }
+  html main {
+    padding-top: 100px; }
+    html main #modal {
+      background: rgba(0, 0, 0, 0.75);
+      bottom: 0;
+      height: 100%;
+      left: 0;
+      overflow: auto;
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 100%;
+      z-index: 1; }
+      html main #modal .modal-content {
+        animation: slideIn 0.3s ease-out;
+        background: #fff;
+        border-radius: 5px;
+        margin: 10% auto;
+        max-width: 280px;
+        width: 70%; }
+        html main #modal .modal-content .modal-header {
+          border-bottom: 1px solid #ccc;
+          padding: 10px; }
+        html main #modal .modal-content .modal-body {
+          padding: 15px; }
+          html main #modal .modal-content .modal-body .form-group {
+            margin: 5px 10px 20px; }
+            html main #modal .modal-content .modal-body .form-group legend,
+            html main #modal .modal-content .modal-body .form-group label {
+              display: block;
+              font-size: 0.8rem;
+              font-weight: 600;
+              letter-spacing: 2px;
+              line-height: 18px;
+              margin-bottom: 3px; }
+            html main #modal .modal-content .modal-body .form-group input[type=text],
+            html main #modal .modal-content .modal-body .form-group select {
+              border: 1px solid #ccc;
+              max-width: 120px;
+              padding: 8px;
+              width: 100%; }
+          html main #modal .modal-content .modal-body .error-message {
+            background: #fee6ea;
+            border: 1px solid #fecdd6;
+            color: #82031a; }
+          html main #modal .modal-content .modal-body .button-group {
+            margin-top: 15px;
+            text-align: right; }
+            html main #modal .modal-content .modal-body .button-group input[type=submit],
+            html main #modal .modal-content .modal-body .button-group input[type=submit]:hover,
+            html main #modal .modal-content .modal-body .button-group input[type=submit]:active,
+            html main #modal .modal-content .modal-body .button-group input[type=submit]:focus,
+            html main #modal .modal-content .modal-body .button-group input[type=button],
+            html main #modal .modal-content .modal-body .button-group input[type=button]:hover,
+            html main #modal .modal-content .modal-body .button-group input[type=button]:active,
+            html main #modal .modal-content .modal-body .button-group input[type=button]:focus {
+              background: #333;
+              border-radius: 3px;
+              color: #00ffcc;
+              margin: 0 3px 0 8px;
+              padding: 10px; }
+    html main .info-message {
+      background: #e6f5ff;
+      border: 1px solid #ccebff;
+      color: #005085; }
+    html main .countdown {
+      color: #00ffcc;
+      font-size: 2.2rem;
+      line-height: 40px;
+      margin: auto;
+      max-width: 900px;
+      text-align: center; }
+  html footer {
+    background: #333;
+    bottom: 0;
+    color: #fff;
+    font-size: 0.8rem;
+    left: 0;
+    letter-spacing: 2px;
+    padding: 14px 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 100%; }
+    html footer a,
+    html footer a:visited,
+    html footer a:hover,
+    html footer a:active,
+    html footer a:focus {
+      color: #00ffcc; }
+
+@keyframes slideIn {
+  from {
+    margin-top: 0; }
+  to {
+    margin-top: 10%; } }
+
