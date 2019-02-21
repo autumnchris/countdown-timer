@@ -9,6 +9,8 @@ export default class App extends Component {
       timeInput: '',
       ampm: 'am',
       modalStyle: {display: 'none'},
+      infoMessage: 'Click the Settings button to set a new countdown.',
+      infoStyle: {display: 'block'},
       errorMessage: '',
       errorStyle: {display: 'none'}
     };
@@ -86,6 +88,7 @@ export default class App extends Component {
               </div>
             </div>
           </div>
+          <p className="message info-message" style={this.state.infoStyle}><span className="fa fa-info-circle fa-lg fa-fw"></span> {this.state.infoMessage}</p>
         </main>
         {/* FOOTER */}
         <footer>Coded by <a href="https://autumnbullard-portfolio.herokuapp.com" target="_blank">Autumn Bullard</a></footer>
