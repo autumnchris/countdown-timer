@@ -39,6 +39,73 @@ html {
       }
     }
   }
+  main {
+    padding-top: 100px;
+    #modal {
+      background: rgba(0, 0, 0, 0.75);
+      bottom: 0;
+      height: 100%;
+      left: 0;
+      overflow: auto;
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      .modal-content {
+        animation: slideIn 0.3s ease-out;
+        background: $white;
+        border-radius: 5px;
+        margin: 10% auto;
+        max-width: 280px;
+        width: 70%;
+        .modal-header {
+          border-bottom: 1px solid $light-gray;
+          padding: 10px;
+        }
+        .modal-body {
+          padding: 15px;
+          .form-group {
+            margin: 5px 10px 20px;
+            legend,
+            label {
+              display: block;
+              font-size: 0.8rem;
+              font-weight: 600;
+              letter-spacing: 2px;
+              line-height: 18px;
+              margin-bottom: 3px;
+            }
+            input[type=text],
+            select {
+              border: 1px solid $light-gray;
+              max-width: 120px;
+              padding: 8px;
+              width: 100%;
+            }
+          }
+          .button-group {
+            margin-top: 15px;
+            text-align: right;
+            input[type=submit],
+            input[type=submit]:hover,
+            input[type=submit]:active,
+            input[type=submit]:focus,
+            input[type=button],
+            input[type=button]:hover,
+            input[type=button]:active,
+            input[type=button]:focus {
+              background: $dark-gray;
+              border-radius: 3px;
+              color: $mint;
+              margin: 0 3px 0 8px;
+              padding: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
   footer {
     background: $dark-gray;
     bottom: 0;
@@ -58,5 +125,14 @@ html {
     a:focus {
       color: $mint;
     }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    margin-top: 0;
+  }
+  to {
+    margin-top: 10%;
   }
 }
