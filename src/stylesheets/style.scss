@@ -6,6 +6,16 @@
   outline: none;
 }
 
+.message {
+  border-radius: 5px;
+  line-height: 20px;
+  margin: 15px auto;
+  max-width: 800px;
+  padding: 15px 10px;
+  text-align: center;
+  width: 100%;
+}
+
 html {
   background: $black;
   background: linear-gradient(120deg, $black, hsl(0, 0%, 18%)) fixed;
@@ -84,6 +94,11 @@ html {
               width: 100%;
             }
           }
+          .error-message {
+            background: hsl(349, 96%, 95%);
+            border: 1px solid hsl(349, 96%, 90%);
+            color: hsl(349, 96%, 26%);
+          }
           .button-group {
             margin-top: 15px;
             text-align: right;
@@ -104,6 +119,11 @@ html {
           }
         }
       }
+    }
+    .info-message {
+      background: hsl(204, 100%, 95%);
+      border: 1px solid hsl(204, 100%, 90%);
+      color: hsl(204, 100%, 26%);
     }
   }
   footer {
