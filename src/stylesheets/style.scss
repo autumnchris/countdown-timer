@@ -1,0 +1,7 @@
+@import 'variables';
+@import 'reset';
+
+html {
+  background: $black;
+  background: linear-gradient(120deg, $black, hsl(0, 0%, 18%)) fixed;
+}
