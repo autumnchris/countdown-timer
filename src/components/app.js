@@ -88,6 +88,19 @@ export default class App extends Component {
     }
   }
 
+  clearCountdown() {
+
+    if (this.state.countdown !== '') {
+      clearInterval(this.timer);
+      this.setState({
+        countdown: '',
+        countdownStyle: {display: 'none'},
+        infoMessage: 'Countdown cleared. Click the Settings button to set a new countdown.',
+        infoStyle: {display: 'block'}
+      });
+    }
+  }
+
   openModal() {
     this.setState({
       modalStyle: {display: 'block'}
@@ -116,7 +129,7 @@ export default class App extends Component {
         <header>
           <h1>Countdown Timer</h1>
           <div className="button-group">
-            <button type="button" className="clear">Clear</button>
+            <button type="button" className="clear" onClick={() => this.clearCountdown()}>Clear</button>
             <button type="button" className="settings" onClick={() => this.openModal()}>Settings</button>
           </div>
         </header>
