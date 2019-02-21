@@ -72,7 +72,7 @@ export default class App extends Component {
           this.setState({
             countdown: '',
             countdownStyle: {display: 'none'},
-            infoMessage: `Countdown ended. Click the Settings button to set a new countdown.`,
+            infoMessage: 'Countdown ended. Click the Settings button to set a new countdown.',
             infoStyle: {display: 'block'}
           });
         }
