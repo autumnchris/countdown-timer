@@ -9,6 +9,36 @@
 html {
   background: $black;
   background: linear-gradient(120deg, $black, hsl(0, 0%, 18%)) fixed;
+  header {
+    background: $dark-gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    h1 {
+      color: $white;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      padding: 15px;
+    }
+    .button-group {
+      padding-right: 8px;
+      button,
+      button:hover,
+      button:active,
+      button:focus {
+        background: $mint;
+        border-radius: 3px;
+        font-size: 0.8rem;
+        margin: 8px 4px;
+        padding: 7px;
+      }
+    }
+  }
   footer {
     background: $dark-gray;
     bottom: 0;
