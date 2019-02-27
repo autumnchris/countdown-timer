@@ -151,7 +151,7 @@ export default class App extends Component {
                   <div className="form-group">
                     <fieldset>
                       <legend>AM/PM:</legend>
-                      <select name="ampm" onChange={(event) => this.handleChange(event)} value={this.state.ampm} arial-label="Select AM or PM">
+                      <select name="ampm" onChange={(event) => this.handleChange(event)} value={this.state.ampm} aria-label="Select AM or PM">
                         <option value="am">AM</option>
                         <option value="pm">PM</option>
                       </select>
