@@ -9,6 +9,7 @@ An app that requires the user to submit a future date which will then display a 
 * [Sass](http://sass-lang.com)
 * [Webpack](https://webpack.js.org)
 * [Moment.js](https://momentjs.com)
+* LocalStorage
 * [Babel](https://babeljs.io)
 * [Font Awesome](https://fontawesome.com)
 * [Google Fonts](https://fonts.google.com)

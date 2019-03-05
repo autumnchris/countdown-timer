@@ -18,6 +18,7 @@ export default class App extends Component {
       errorStyle: {display: 'none'}
     };
     this.timer = null;
+    this.endDate = JSON.parse(localStorage.getItem('countdownTimer')) || '';
   }
 
   handleChange(event) {
@@ -26,16 +27,11 @@ export default class App extends Component {
     });
   }
 
-  startCountdown(event) {
+  handleSubmit(event) {
     event.preventDefault();
-    const endDate = moment(`${this.state.dateInput} ${this.state.timeInput} ${this.state.ampm}`, 'MM-DD-YYYY hh:mm a').format('X');
-    let distance,
-    days,
-    hours,
-    minutes,
-    seconds;
+    this.endDate = moment(`${this.state.dateInput} ${this.state.timeInput} ${this.state.ampm}`, 'MM-DD-YYYY hh:mm a').format('X');
 
-    if (endDate <= moment().format('X')) {
+    if ((this.endDate - moment().format('X')) < 1) {
       this.setState({
         errorMessage: 'The countdown must be set to a future date.',
         errorStyle: {display: 'block'}
@@ -54,9 +50,29 @@ export default class App extends Component {
       });
     }
     else {
-      clearInterval(this.timer);
+      this.startCountdown();
+      this.closeModal();
+      this.setState({
+        dateInput: '',
+        timeInput: '',
+        ampm: 'am'
+      });
+    }
+  }
+
+  startCountdown() {
+    localStorage.setItem('countdownTimer', JSON.stringify(this.endDate));
+    let distance,
+    days,
+    hours,
+    minutes,
+    seconds;
+
+    clearInterval(this.timer);
+
+    if (this.endDate !== '') {
       this.timer = setInterval(() => {
-        distance = endDate - moment().format('X');
+        distance = this.endDate - moment().format('X');
 
         if (distance > 0) {
           days = parseInt(distance / (60 * 60 * 24), 10);
@@ -64,7 +80,9 @@ export default class App extends Component {
           minutes = parseInt(distance % (60 * 60) / (60), 10);
           seconds = parseInt(distance % 60, 10);
           this.setState({
-            countdown: `Countdown ends in ${days} Day${days === 1 ? '' : 's'}, ${hours} Hour${hours === 1 ? '' : 's'}, ${minutes} Minute${minutes === 1 ? '' : 's'}, and ${seconds} Second${seconds === 1 ? '' : 's'}`
+            countdown: `Countdown ends in ${days} Day${days === 1 ? '' : 's'}, ${hours} Hour${hours === 1 ? '' : 's'}, ${minutes} Minute${minutes === 1 ? '' : 's'}, and ${seconds} Second${seconds === 1 ? '' : 's'}`,
+            countdownStyle: {display: 'block'},
+            infoStyle: {display: 'none'}
           });
         }
         else {
@@ -75,16 +93,14 @@ export default class App extends Component {
             infoMessage: 'Countdown ended. Click the Settings button to set a new countdown.',
             infoStyle: {display: 'block'}
           });
+          this.endDate = '';
+          localStorage.setItem('countdownTimer', JSON.stringify(this.endDate));
         }
       });
-
       this.setState({
-        countdownStyle: {display: 'block'},
-        infoStyle: {display: 'none'},
         errorMessage: '',
         errorStyle: {display: 'none'}
       });
-      this.closeModal();
     }
   }
 
@@ -98,6 +114,8 @@ export default class App extends Component {
         infoMessage: 'Countdown cleared. Click the Settings button to set a new countdown.',
         infoStyle: {display: 'block'}
       });
+      this.endDate = '';
+      localStorage.setItem('countdownTimer', JSON.stringify(this.endDate));
     }
   }
 
@@ -114,6 +132,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this.startCountdown();
     window.addEventListener('click', (event) => {
 
       if (event.target.id === 'modal') {
@@ -139,7 +158,7 @@ export default class App extends Component {
             <div className="modal-content">
               <div className="modal-header">Countdown Settings</div>
               <div className="modal-body">
-                <form onSubmit={(event) => this.startCountdown(event)}>
+                <form onSubmit={(event) => this.handleSubmit(event)}>
                   <div className="form-group">
                     <label htmlFor="date-input">Date:</label>
                     <input type="text" name="dateInput" onChange={(event) => this.handleChange(event)} value={this.state.dateInput} placeholder="MM-DD-YYYY" id="date-input" required />
