@@ -122,7 +122,8 @@ html {
         margin: 8px 4px;
         padding: 7px; }
   html main {
-    padding-top: 100px; }
+    padding-top: 100px;
+    padding-bottom: 70px; }
     html main #modal {
       background: rgba(0, 0, 0, 0.75);
       bottom: 0;
