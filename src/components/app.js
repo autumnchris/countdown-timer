@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CountdownUnits from './countdown-units';
 import moment from 'moment';
 
 export default class App extends Component {
@@ -6,7 +7,24 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countdown: '',
+      countdown: [
+        {
+          unit: 'days',
+          value: ''
+        },
+        {
+          unit: 'hours',
+          value: ''
+        },
+        {
+          unit: 'mins',
+          value: ''
+        },
+        {
+          unit: 'secs',
+          value: ''
+        }
+      ],
       dateInput: '',
       timeInput: '',
       ampm: 'am',
@@ -62,11 +80,8 @@ export default class App extends Component {
 
   startCountdown() {
     localStorage.setItem('countdownTimer', JSON.stringify(this.endDate));
-    let distance,
-    days,
-    hours,
-    minutes,
-    seconds;
+    let countdown = this.state.countdown;
+    let distance;
 
     clearInterval(this.timer);
 
@@ -75,20 +90,28 @@ export default class App extends Component {
         distance = this.endDate - moment().format('X');
 
         if (distance > 0) {
-          days = parseInt(distance / (60 * 60 * 24), 10);
-          hours = parseInt(distance % (60 * 60 * 24) / (60 * 60), 10);
-          minutes = parseInt(distance % (60 * 60) / (60), 10);
-          seconds = parseInt(distance % 60, 10);
+          // Days
+          countdown[0]['value'] = parseInt(distance / (60 * 60 * 24), 10);
+          // Hours
+          countdown[1].value = parseInt(distance % (60 * 60 * 24) / (60 * 60), 10);
+          // Minutes
+          countdown[2].value = parseInt(distance % (60 * 60) / (60), 10);
+          // Seconds
+          countdown[3].value = parseInt(distance % 60, 10);
           this.setState({
-            countdown: `Countdown ends in ${days} Day${days === 1 ? '' : 's'}, ${hours} Hour${hours === 1 ? '' : 's'}, ${minutes} Minute${minutes === 1 ? '' : 's'}, and ${seconds} Second${seconds === 1 ? '' : 's'}`,
+            countdown,
             countdownStyle: {display: 'block'},
             infoStyle: {display: 'none'}
           });
         }
         else {
+          countdown = countdown.map(unit => {
+            unit.value = '';
+            return unit;
+          });
           clearInterval(this.timer);
           this.setState({
-            countdown: '',
+            countdown,
             countdownStyle: {display: 'none'},
             infoMessage: 'Countdown ended. Click the Settings button to set a new countdown.',
             infoStyle: {display: 'block'}
@@ -105,11 +128,16 @@ export default class App extends Component {
   }
 
   clearCountdown() {
+    let countdown = this.state.countdown;
 
-    if (this.state.countdown !== '') {
+    if (this.endDate !== '') {
       clearInterval(this.timer);
+      countdown = countdown.map(unit => {
+        unit.value = '';
+        return unit;
+      });
       this.setState({
-        countdown: '',
+        countdown,
         countdownStyle: {display: 'none'},
         infoMessage: 'Countdown cleared. Click the Settings button to set a new countdown.',
         infoStyle: {display: 'block'}
@@ -186,7 +214,8 @@ export default class App extends Component {
               </div>
             </div>
           </div>
-          <div className="countdown" style={this.state.countdownStyle}>{this.state.countdown}</div>
+          {/* COUNTDOWN TIMER */}
+          <CountdownUnits countdownUnits={this.state.countdown} countdownStyle={this.state.countdownStyle} />
           <p className="message info-message" style={this.state.infoStyle}><span className="fa fa-info-circle fa-lg fa-fw"></span> {this.state.infoMessage}</p>
         </main>
         {/* FOOTER */}

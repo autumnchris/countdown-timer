@@ -188,12 +188,28 @@ html {
       border: 1px solid #ccebff;
       color: #005085; }
     html main .countdown {
-      color: #00ffcc;
-      font-size: 2.2rem;
-      line-height: 40px;
-      margin: auto;
-      max-width: 900px;
+      font-size: 1.1rem;
       text-align: center; }
+      html main .countdown p {
+        color: #fff;
+        margin-bottom: 10px;
+        text-align: center; }
+      html main .countdown .card {
+        background: #333;
+        display: inline-block;
+        margin: 10px;
+        min-width: 100px;
+        padding: 20px 0; }
+        html main .countdown .card .countdown-value {
+          color: #00ffcc;
+          font-size: 2rem;
+          margin-bottom: 10px;
+          padding: 0 20px;
+          text-align: center; }
+        html main .countdown .card .countdown-unit {
+          color: #fff;
+          text-align: center;
+          text-transform: capitalize; }
   html footer {
     background: #333;
     bottom: 0;

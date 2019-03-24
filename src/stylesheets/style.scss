@@ -127,12 +127,32 @@ html {
       color: hsl(204, 100%, 26%);
     }
     .countdown {
-      color: $mint;
-      font-size: 2.2rem;
-      line-height: 40px;
-      margin: auto;
-      max-width: 900px;
+      font-size: 1.1rem;
       text-align: center;
+      p {
+        color: $white;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .card {
+        background: $dark-gray;
+        display: inline-block;
+        margin: 10px;
+        min-width: 100px;
+        padding: 20px 0;
+        .countdown-value {
+          color: $mint;
+          font-size: 2rem;
+          margin-bottom: 10px;
+          padding: 0 20px;
+          text-align: center;
+        }
+        .countdown-unit {
+          color: $white;
+          text-align: center;
+          text-transform: capitalize;
+        }
+      }
     }
   }
   footer {
