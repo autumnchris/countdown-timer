@@ -30,8 +30,8 @@ export default class App extends Component {
       ampm: 'am',
       modalStyle: {display: 'none'},
       countdownStyle: {display: 'none'},
-      infoMessage: 'Click the Settings button to set a new countdown.',
-      infoStyle: {display: 'block'},
+      infoMessage: '',
+      infoStyle: {display: 'none'},
       errorMessage: '',
       errorStyle: {display: 'none'}
     };
@@ -123,6 +123,12 @@ export default class App extends Component {
       this.setState({
         errorMessage: '',
         errorStyle: {display: 'none'}
+      });
+    }
+    else {
+      this.setState({
+        infoMessage: 'Click the Settings button to set a new countdown.',
+        infoStyle: {display: 'block'}
       });
     }
   }
