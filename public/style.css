@@ -13,8 +13,6 @@ div,
 span,
 button,
 form,
-fieldset,
-legend,
 label,
 input,
 select,
@@ -149,7 +147,6 @@ html {
           padding: 15px; }
           html main #modal .modal-content .modal-body .form-group {
             margin: 5px 10px 20px; }
-            html main #modal .modal-content .modal-body .form-group legend,
             html main #modal .modal-content .modal-body .form-group label {
               display: block;
               font-size: 0.8rem;
