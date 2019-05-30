@@ -202,13 +202,11 @@ export default class App extends Component {
                     <input type="text" name="timeInput" onChange={(event) => this.handleChange(event)} value={this.state.timeInput} placeholder="hh:mm" id="time-input" required />
                   </div>
                   <div className="form-group">
-                    <fieldset>
-                      <legend>AM/PM:</legend>
-                      <select name="ampm" onChange={(event) => this.handleChange(event)} value={this.state.ampm} aria-label="Select AM or PM">
-                        <option value="am">AM</option>
-                        <option value="pm">PM</option>
-                      </select>
-                    </fieldset>
+                    <label htmlFor="ampm-input">AM/PM:</label>
+                    <select name="ampm" onChange={(event) => this.handleChange(event)} value={this.state.ampm} id="ampm-input">
+                      <option value="am">AM</option>
+                      <option value="pm">PM</option>
+                    </select>
                   </div>
                   {/* ERROR MESSAGE */}
                   <p className="message error-message" style={this.state.errorStyle}><span className="fa fa-exclamation-circle fa-lg fa-fw"></span> {this.state.errorMessage}</p>
