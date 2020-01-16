@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 html,
 body,
@@ -25,7 +25,7 @@ a {
   border: 0;
   border-radius: 0;
   box-sizing: border-box;
-  color: $dark-gray;
+  color: change-color($grayscale, $lightness: 20%);
   font-family: $main-font;
   font-size: 100%;
   font-weight: 400;

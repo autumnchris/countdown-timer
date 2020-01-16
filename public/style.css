@@ -23,7 +23,7 @@ a {
   border: 0;
   border-radius: 0;
   box-sizing: border-box;
-  color: #333;
+  color: #333333;
   font-family: "Noto Sans", Helvetica, Arial, sans-serif;
   font-size: 100%;
   font-weight: 400;
@@ -91,10 +91,10 @@ select {
   width: 100%; }
 
 html {
-  background: #000;
-  background: linear-gradient(120deg, #000, #2e2e2e) fixed; }
+  background: black;
+  background: linear-gradient(120deg, black, #2e2e2e) fixed; }
   html header {
-    background: #333;
+    background: #333333;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -104,7 +104,7 @@ html {
     top: 0;
     width: 100%; }
     html header h1 {
-      color: #fff;
+      color: white;
       font-size: 0.8rem;
       letter-spacing: 2px;
       padding: 15px; }
@@ -135,13 +135,13 @@ html {
       z-index: 1; }
       html main #modal .modal-content {
         animation: slideIn 0.3s ease-out;
-        background: #fff;
+        background: white;
         border-radius: 5px;
         margin: 10% auto;
         max-width: 280px;
         width: 70%; }
         html main #modal .modal-content .modal-header {
-          border-bottom: 1px solid #ccc;
+          border-bottom: 1px solid #cccccc;
           padding: 10px; }
         html main #modal .modal-content .modal-body {
           padding: 15px; }
@@ -156,7 +156,7 @@ html {
               margin-bottom: 3px; }
             html main #modal .modal-content .modal-body .form-group input[type=text],
             html main #modal .modal-content .modal-body .form-group select {
-              border: 1px solid #ccc;
+              border: 1px solid #cccccc;
               max-width: 120px;
               padding: 8px;
               width: 100%; }
@@ -175,7 +175,7 @@ html {
             html main #modal .modal-content .modal-body .button-group input[type=button]:hover,
             html main #modal .modal-content .modal-body .button-group input[type=button]:active,
             html main #modal .modal-content .modal-body .button-group input[type=button]:focus {
-              background: #333;
+              background: #333333;
               border-radius: 3px;
               color: #00ffcc;
               margin: 0 3px 0 8px;
@@ -188,11 +188,11 @@ html {
       font-size: 1.1rem;
       text-align: center; }
       html main .countdown p {
-        color: #fff;
+        color: white;
         margin-bottom: 10px;
         text-align: center; }
       html main .countdown .card {
-        background: #333;
+        background: #333333;
         display: inline-block;
         margin: 10px;
         min-width: 100px;
@@ -204,13 +204,13 @@ html {
           padding: 0 20px;
           text-align: center; }
         html main .countdown .card .countdown-unit {
-          color: #fff;
+          color: white;
           text-align: center;
           text-transform: capitalize; }
   html footer {
-    background: #333;
+    background: #333333;
     bottom: 0;
-    color: #fff;
+    color: white;
     font-size: 0.8rem;
     left: 0;
     letter-spacing: 2px;
