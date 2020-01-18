@@ -2,7 +2,7 @@
 @import "reset";
 
 *:focus {
-  box-shadow: 0 0 3px 3px rgba(65, 180, 250, 0.8);
+  box-shadow: 0 0 3px 3px hsla(203, 95%, 62%, 0.8);
   outline: none;
 }
 
@@ -17,10 +17,10 @@
 }
 
 html {
-  background: change-color($grayscale, $lightness: 0%);
-  background: linear-gradient(120deg, change-color($grayscale, $lightness: 0%), change-color($grayscale, $lightness: 18%)) fixed;
+  background: $black;
+  background: linear-gradient(120deg, $black, change-color($black, $lightness: 18%)) fixed;
   header {
-    background: change-color($grayscale, $lightness: 20%);
+    background: change-color($black, $lightness: 20%);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -30,7 +30,7 @@ html {
     top: 0;
     width: 100%;
     h1 {
-      color: change-color($grayscale, $lightness: 100%);
+      color: change-color($black, $lightness: 100%);
       font-size: 0.8rem;
       letter-spacing: 2px;
       padding: 15px;
@@ -53,7 +53,7 @@ html {
     padding-top: 100px;
     padding-bottom: 70px;
     #modal {
-      background: rgba(change-color($grayscale, $lightness: 0%), 0.75);
+      background: rgba($black, 0.75);
       bottom: 0;
       height: 100%;
       left: 0;
@@ -65,13 +65,13 @@ html {
       z-index: 1;
       .modal-content {
         animation: slideIn 0.3s ease-out;
-        background: change-color($grayscale, $lightness: 100%);
+        background: change-color($black, $lightness: 100%);
         border-radius: 5px;
         margin: 10% auto;
         max-width: 280px;
         width: 70%;
         .modal-header {
-          border-bottom: 1px solid change-color($grayscale, $lightness: 80%);
+          border-bottom: 1px solid change-color($black, $lightness: 80%);
           padding: 10px;
         }
         .modal-body {
@@ -88,7 +88,7 @@ html {
             }
             input[type=text],
             select {
-              border: 1px solid change-color($grayscale, $lightness: 80%);
+              border: 1px solid change-color($black, $lightness: 80%);
               max-width: 120px;
               padding: 8px;
               width: 100%;
@@ -97,7 +97,7 @@ html {
           .error-message {
             background: change-color($error-red, $lightness: 95%);
             border: 1px solid change-color($error-red, $lightness: 90%);
-            color: change-color($error-red, $lightness: 26%);
+            color: $error-red;
           }
           .button-group {
             margin-top: 15px;
@@ -110,7 +110,7 @@ html {
             input[type=button]:hover,
             input[type=button]:active,
             input[type=button]:focus {
-              background: change-color($grayscale, $lightness: 20%);
+              background: change-color($black, $lightness: 20%);
               border-radius: 3px;
               color: $mint;
               margin: 0 3px 0 8px;
@@ -123,18 +123,18 @@ html {
     .info-message {
       background: change-color($info-blue, $lightness: 95%);
       border: 1px solid change-color($info-blue, $lightness: 90%);
-      color: change-color($info-blue, $lightness: 26%);
+      color: $info-blue;
     }
     .countdown {
       font-size: 1.1rem;
       text-align: center;
       p {
-        color: change-color($grayscale, $lightness: 100%);
+        color: change-color($black, $lightness: 100%);
         margin-bottom: 10px;
         text-align: center;
       }
       .card {
-        background: change-color($grayscale, $lightness: 20%);
+        background: change-color($black, $lightness: 20%);
         display: inline-block;
         margin: 10px;
         min-width: 100px;
@@ -147,7 +147,7 @@ html {
           text-align: center;
         }
         .countdown-unit {
-          color: change-color($grayscale, $lightness: 100%);
+          color: change-color($black, $lightness: 100%);
           text-align: center;
           text-transform: capitalize;
         }
@@ -155,9 +155,9 @@ html {
     }
   }
   footer {
-    background: change-color($grayscale, $lightness: 20%);
+    background: change-color($black, $lightness: 20%);
     bottom: 0;
-    color: change-color($grayscale, $lightness: 100%);
+    color: change-color($black, $lightness: 100%);
     font-size: 0.8rem;
     left: 0;
     letter-spacing: 2px;
