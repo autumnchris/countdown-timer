@@ -223,7 +223,7 @@ export default class App extends Component {
           <p className="message info-message" style={this.state.infoStyle}><span className="fa fa-info-circle fa-lg fa-fw"></span> {this.state.infoMessage}</p>
         </main>
         {/* FOOTER */}
-        <footer>Coded by <a href="https://autumnbullard-portfolio.herokuapp.com" target="_blank">Autumn Bullard</a></footer>
+        <footer>Created by <a href="https://autumnbullard-portfolio.herokuapp.com" target="_blank">Autumn Bullard</a> &copy; {new Date().getFullYear()}</footer>
       </div>
     );
   }
