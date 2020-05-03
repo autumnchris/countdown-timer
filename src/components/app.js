@@ -155,7 +155,7 @@ export default class App extends Component {
       }
     }
     else {
-      alert('No countdown has been set. Please click the settings button to start a new countdown.')
+      alert('No countdown has been set. Please click the Settings button to start a new countdown.')
     }
   }
 
