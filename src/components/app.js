@@ -136,20 +136,23 @@ export default class App extends Component {
   clearCountdown() {
     let countdown = this.state.countdown;
 
-    if (this.endDate !== '') {
-      clearInterval(this.timer);
-      countdown = countdown.map(unit => {
-        unit.value = '';
-        return unit;
-      });
-      this.setState({
-        countdown,
-        countdownStyle: {display: 'none'},
-        infoMessage: 'Countdown cleared. Click the Settings button to set a new countdown.',
-        infoStyle: {display: 'block'}
-      });
-      this.endDate = '';
-      localStorage.setItem('countdownTimer', JSON.stringify(this.endDate));
+    if (confirm('Are you sure you want to clear your currently running countdown?')) {
+
+      if (this.endDate !== '') {
+        clearInterval(this.timer);
+        countdown = countdown.map(unit => {
+          unit.value = '';
+          return unit;
+        });
+        this.setState({
+          countdown,
+          countdownStyle: {display: 'none'},
+          infoMessage: 'Countdown cleared. Click the Settings button to set a new countdown.',
+          infoStyle: {display: 'block'}
+        });
+        this.endDate = '';
+        localStorage.setItem('countdownTimer', JSON.stringify(this.endDate));
+      }
     }
   }
 
