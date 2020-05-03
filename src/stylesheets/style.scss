@@ -1,179 +1,295 @@
 @import "variables";
-@import "reset";
 
-*:focus {
-  box-shadow: 0 0 3px 3px hsla(203, 95%, 62%, 0.8);
-  outline: none;
-}
-
-.message {
-  border-radius: 5px;
-  line-height: 20px;
-  margin: 15px auto;
-  max-width: 800px;
-  padding: 15px 10px;
-  text-align: center;
-  width: 100%;
-}
+// BASE PAGE STYLES
 
 html {
-  background: $black;
-  background: linear-gradient(120deg, $black, change-color($black, $lightness: 18%)) fixed;
-  header {
-    background: change-color($black, $lightness: 20%);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 100%;
-    h1 {
-      color: change-color($black, $lightness: 100%);
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      padding: 15px;
-    }
-    .button-group {
-      padding-right: 8px;
-      button,
-      button:hover,
-      button:active,
-      button:focus {
-        background: $mint;
-        border-radius: 3px;
-        font-size: 0.8rem;
-        margin: 8px 4px;
-        padding: 7px;
-      }
-    }
-  }
-  main {
-    padding-top: 100px;
-    padding-bottom: 70px;
-    #modal {
-      background: rgba($black, 0.75);
-      bottom: 0;
-      height: 100%;
+  background: transparent;
+  box-sizing: border-box;
+  color: change-color($black, $lightness: 100%);
+  font-family: $main-font;
+  height: 100%;
+  letter-spacing: 1px;
+  text-align: center;
+  body {
+    background: $black;
+    background: linear-gradient(120deg, $black, change-color($black, $lightness: 18%)) fixed;
+    min-height: 100%;
+    overscroll-behavior: none;
+    padding: 0 20px;
+    position: relative;
+    header {
+      background: change-color($black, $lightness: 20%);
       left: 0;
-      overflow: auto;
       position: fixed;
       right: 0;
       top: 0;
       width: 100%;
       z-index: 1;
-      .modal-content {
-        animation: slideIn 0.3s ease-out;
-        background: change-color($black, $lightness: 100%);
-        border-radius: 5px;
-        margin: 10% auto;
-        max-width: 280px;
-        width: 70%;
-        .modal-header {
-          border-bottom: 1px solid change-color($black, $lightness: 80%);
-          padding: 10px;
-        }
-        .modal-body {
-          padding: 15px;
-          .form-group {
-            margin: 5px 10px 20px;
-            label {
-              display: block;
-              font-size: 0.8rem;
-              font-weight: 600;
-              letter-spacing: 2px;
-              line-height: 18px;
-              margin-bottom: 3px;
-            }
-            input[type=text],
-            select {
-              border: 1px solid change-color($black, $lightness: 80%);
-              max-width: 120px;
-              padding: 8px;
-              width: 100%;
-            }
-          }
-          .error-message {
-            background: change-color($error-red, $lightness: 95%);
-            border: 1px solid change-color($error-red, $lightness: 90%);
-            color: $error-red;
-          }
-          .button-group {
-            margin-top: 15px;
-            text-align: right;
-            input[type=submit],
-            input[type=submit]:hover,
-            input[type=submit]:active,
-            input[type=submit]:focus,
-            input[type=button],
-            input[type=button]:hover,
-            input[type=button]:active,
-            input[type=button]:focus {
-              background: change-color($black, $lightness: 20%);
-              border-radius: 3px;
-              color: $mint;
-              margin: 0 3px 0 8px;
-              padding: 10px;
-            }
-          }
-        }
+    }
+    main {
+      padding: 100px 0 6rem;
+    }
+    footer {
+      background: change-color($black, $lightness: 20%);
+      bottom: 0;
+      font-size: 0.8rem;
+      left: 0;
+      letter-spacing: 2px;
+      padding: 14px 0;
+      position: absolute;
+      right: 0;
+      width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      box-sizing: border-box;
+      margin-top: 0;
+    }
+  }
+}
+
+// BASE ELEMENT STYLES
+
+div,
+header,
+main,
+footer,
+p,
+form,
+label,
+input,
+select,
+button,
+button:hover,
+button:active,
+button:focus {
+  box-sizing: border-box;
+}
+
+button,
+button:hover,
+button:active,
+button:focus,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+}
+
+input,
+select {
+  border: 1px solid change-color($black, $lightness: 80%);
+  border-radius: 0;
+  color: change-color($black, $lightness: 20%);
+  line-height: 1.3;
+  padding: 8px;
+  width: 100%;
+}
+
+input::placeholder {
+  color: change-color($black, $lightness: 60%);
+}
+
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  color: $mint;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+a:focus,
+button:focus,
+details:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus {
+  box-shadow: 0 0 3px 3px hsla(203, 95%, 62%, 0.8);
+  outline: none;
+}
+
+.button,
+.button:visited,
+.button:hover,
+.button:active,
+.button:focus {
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: normal;
+  padding: 5px 8px;
+  width: auto;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.message {
+  border-radius: 5px;
+  line-height: 1.55;
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 15px 10px;
+}
+
+.select-wrapper {
+  background: change-color($black, $lightness: 20%);
+  border-radius: 4px;
+  color: change-color($black, $lightness: 90%);
+  position: relative;
+}
+
+.select-wrapper select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.select-wrapper select::-ms-expand {
+  display: none;
+}
+
+.select-wrapper:after {
+  content: "\f0dc";
+  cursor: pointer;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  pointer-events: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+// SPECIFIC ELEMENT STYLES
+
+header {
+  .header-item {
+    font-size: 0.9rem;
+    line-height: normal;
+    margin: 0;
+  }
+  h1 {
+    float: left;
+    padding: 18px 10px;
+  }
+  .button-group {
+    float: right;
+    padding: 10px 5px;
+    .header-button,
+    .header-button:hover,
+    .header-button:active,
+    .header-button:focus {
+      background: $mint;
+      border: 2px solid $mint;
+      color: change-color($black, $lightness: 20%);
+      margin: 0 4px;
+      &:hover {
+        background: transparent;
+        color: $mint;
       }
     }
-    .info-message {
-      background: change-color($info-blue, $lightness: 95%);
-      border: 1px solid change-color($info-blue, $lightness: 90%);
-      color: $info-blue;
+  }
+}
+
+.modal {
+  background: rgba($black, 0.75);
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  .modal-content {
+    animation: slideIn 0.3s ease-out;
+    background: change-color($black, $lightness: 100%);
+    border-radius: 5px;
+    color: change-color($black, $lightness: 20%);
+    margin: 10% auto;
+    max-width: 280px;
+    width: 80%;
+    .modal-header {
+      border-bottom: 1px solid change-color($black, $lightness: 80%);
+      padding: 10px;
+      text-align: left;
     }
-    .countdown {
-      font-size: 1.1rem;
-      text-align: center;
-      p {
-        color: change-color($black, $lightness: 100%);
-        margin-bottom: 10px;
-        text-align: center;
+    .modal-body {
+      padding: 15px;
+      .form-group {
+        margin-bottom: 20px;
+        max-width: 200px;
+        label {
+          display: block;
+          font-size: 0.8rem;
+          font-weight: 600;
+          letter-spacing: 2px;
+          margin-bottom: 3px;
+          text-align: left;
+        }
       }
-      .card {
-        background: change-color($black, $lightness: 20%);
-        display: inline-block;
-        margin: 10px;
-        min-width: 100px;
-        padding: 20px 0;
-        .countdown-value {
+      .button-group {
+        text-align: right;
+        .modal-button,
+        .modal-button:hover,
+        .modal-button:active,
+        .modal-button:focus {
+          background: change-color($black, $lightness: 20%);
           color: $mint;
-          font-size: 2rem;
-          margin-bottom: 10px;
-          padding: 0 20px;
-          text-align: center;
-        }
-        .countdown-unit {
-          color: change-color($black, $lightness: 100%);
-          text-align: center;
-          text-transform: capitalize;
+          margin-left: 8px;
+          &:hover {
+            background: change-color($black, $lightness: 15%);
+          }
         }
       }
     }
   }
-  footer {
-    background: change-color($black, $lightness: 20%);
-    bottom: 0;
-    color: change-color($black, $lightness: 100%);
-    font-size: 0.8rem;
-    left: 0;
-    letter-spacing: 2px;
-    padding: 14px 0;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    width: 100%;
-    a,
-    a:visited,
-    a:hover,
-    a:active,
-    a:focus {
-      color: $mint;
-    }
+}
+
+.countdown .card {
+  background: change-color($black, $lightness: 20%);
+  display: inline-block;
+  margin: 10px;
+  min-width: 100px;
+  padding: 20px 0;
+  .countdown-value {
+    color: $mint;
+    font-size: 2rem;
+    margin-bottom: 10px;
   }
+  .countdown-unit {
+    text-transform: capitalize;
+  }
+}
+
+.info-message {
+  background: change-color($info-blue, $lightness: 95%);
+  border: 1px solid change-color($info-blue, $lightness: 90%);
+  color: $info-blue;
+}
+
+.error-message {
+  background: change-color($error-red, $lightness: 95%);
+  border: 1px solid change-color($error-red, $lightness: 90%);
+  color: $error-red;
 }
 
 @keyframes slideIn {

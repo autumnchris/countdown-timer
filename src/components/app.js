@@ -180,39 +180,41 @@ export default class App extends Component {
       <div className="body">
         {/* HEADER */}
         <header>
-          <h1>Countdown Timer</h1>
-          <div className="button-group">
-            <button type="button" className="clear" onClick={() => this.clearCountdown()}>Clear</button>
-            <button type="button" className="settings" onClick={() => this.openModal()}>Settings</button>
+          <h1 className="header-item">Countdown Timer</h1>
+          <div className="header-item button-group">
+            <button type="button" className="button header-button clear" onClick={() => this.clearCountdown()}>Clear</button>
+            <button type="button" className="button header-button settings" onClick={() => this.openModal()}>Settings</button>
           </div>
         </header>
         <main>
           {/* SETTINGS MODAL */}
-          <div id="modal" style={this.state.modalStyle}>
+          <div className="modal" id="modal" style={this.state.modalStyle}>
             <div className="modal-content">
-              <div className="modal-header">Countdown Settings</div>
+              <div className="modal-header">Set New Countdown</div>
               <div className="modal-body">
                 <form onSubmit={(event) => this.handleSubmit(event)}>
                   <div className="form-group">
-                    <label htmlFor="date-input">Date:</label>
+                    <label htmlFor="date-input">Date</label>
                     <input type="text" name="dateInput" onChange={(event) => this.handleChange(event)} value={this.state.dateInput} placeholder="MM-DD-YYYY" id="date-input" required />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="time-input">Time:</label>
+                    <label htmlFor="time-input">Time</label>
                     <input type="text" name="timeInput" onChange={(event) => this.handleChange(event)} value={this.state.timeInput} placeholder="hh:mm" id="time-input" required />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="ampm-input">AM/PM:</label>
-                    <select name="ampm" onChange={(event) => this.handleChange(event)} value={this.state.ampm} id="ampm-input">
-                      <option value="am">AM</option>
-                      <option value="pm">PM</option>
-                    </select>
+                    <label htmlFor="ampm-input">AM/PM</label>
+                    <div className="select-wrapper">
+                      <select name="ampm" onChange={(event) => this.handleChange(event)} value={this.state.ampm} id="ampm-input">
+                        <option value="am">AM</option>
+                        <option value="pm">PM</option>
+                      </select>
+                    </div>
                   </div>
                   {/* ERROR MESSAGE */}
                   <p className="message error-message" style={this.state.errorStyle}><span className="fa fa-exclamation-circle fa-lg fa-fw"></span> {this.state.errorMessage}</p>
                   <div className="button-group">
-                    <input type="submit" value="Start" />
-                    <input type="button" onClick={() => this.closeModal()} value="Cancel" />
+                    <input type="submit" className="button modal-button" value="Start" />
+                    <input type="button" className="button modal-button" onClick={() => this.closeModal()} value="Cancel" />
                   </div>
                 </form>
               </div>

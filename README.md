@@ -11,6 +11,7 @@ An app that requires the user to submit a future date which will then display a 
 * [Moment.js](https://momentjs.com)
 * LocalStorage
 * [Babel](https://babeljs.io)
+* [Normalize.css](https://necolas.github.io/normalize.css)
 * [Font Awesome](https://fontawesome.com)
 * [Google Fonts](https://fonts.google.com)
 
