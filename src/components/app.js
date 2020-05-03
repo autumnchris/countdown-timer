@@ -113,7 +113,7 @@ export default class App extends Component {
           this.setState({
             countdown,
             countdownStyle: {display: 'none'},
-            infoMessage: 'Countdown ended. Click the Settings button to set a new countdown.',
+            infoMessage: 'Countdown ended. Click the Settings button to start a new countdown.',
             infoStyle: {display: 'block'}
           });
           this.endDate = '';
@@ -127,7 +127,7 @@ export default class App extends Component {
     }
     else {
       this.setState({
-        infoMessage: 'Click the Settings button to set a new countdown.',
+        infoMessage: 'Click the Settings button to start a new countdown.',
         infoStyle: {display: 'block'}
       });
     }
@@ -136,9 +136,9 @@ export default class App extends Component {
   clearCountdown() {
     let countdown = this.state.countdown;
 
-    if (confirm('Are you sure you want to clear your currently running countdown?')) {
+    if (this.endDate !== '') {
 
-      if (this.endDate !== '') {
+      if (confirm('Are you sure you want to clear your currently running countdown?')) {
         clearInterval(this.timer);
         countdown = countdown.map(unit => {
           unit.value = '';
@@ -147,12 +147,15 @@ export default class App extends Component {
         this.setState({
           countdown,
           countdownStyle: {display: 'none'},
-          infoMessage: 'Countdown cleared. Click the Settings button to set a new countdown.',
+          infoMessage: 'Countdown cleared. Click the Settings button to start a new countdown.',
           infoStyle: {display: 'block'}
         });
         this.endDate = '';
         localStorage.setItem('countdownTimer', JSON.stringify(this.endDate));
       }
+    }
+    else {
+      alert('No countdown has been set. Please click the settings button to start a new countdown.')
     }
   }
 
