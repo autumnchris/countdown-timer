@@ -134,6 +134,15 @@ textarea:focus,
   border-radius: 4px;
   color: #e6e6e6;
   position: relative; }
+  .select-wrapper:after {
+    content: "\f0dc";
+    cursor: pointer;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 10px; }
 
 .select-wrapper select {
   -webkit-appearance: none;
@@ -145,19 +154,8 @@ textarea:focus,
   border-radius: inherit;
   color: inherit;
   cursor: pointer; }
-
-.select-wrapper select::-ms-expand {
-  display: none; }
-
-.select-wrapper:after {
-  content: "\f0dc";
-  cursor: pointer;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  pointer-events: none;
-  position: absolute;
-  right: 10px;
-  top: 10px; }
+  .select-wrapper select::-ms-expand {
+    display: none; }
 
 header .header-item {
   font-size: 0.9rem;

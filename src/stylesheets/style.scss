@@ -148,6 +148,16 @@ textarea:focus,
   border-radius: 4px;
   color: change-color($black, $lightness: 90%);
   position: relative;
+  &:after {
+    content: "\f0dc";
+    cursor: pointer;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
 }
 
 .select-wrapper select {
@@ -160,21 +170,9 @@ textarea:focus,
   border-radius: inherit;
   color: inherit;
   cursor: pointer;
-}
-
-.select-wrapper select::-ms-expand {
-  display: none;
-}
-
-.select-wrapper:after {
-  content: "\f0dc";
-  cursor: pointer;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  pointer-events: none;
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  &::-ms-expand {
+    display: none;
+  }
 }
 
 // SPECIFIC ELEMENT STYLES
