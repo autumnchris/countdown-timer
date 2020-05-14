@@ -89,10 +89,9 @@ select {
   line-height: 1.3;
   padding: 8px;
   width: 100%;
-}
-
-input::placeholder {
-  color: change-color($black, $lightness: 60%);
+  &::placeholder {
+    color: change-color($black, $lightness: 60%);
+  }
 }
 
 a,
