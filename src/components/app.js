@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CountdownUnits from './countdown-units';
+import CountdownUnit from './countdown-unit';
 import moment from 'moment';
 
 export default class App extends Component {
@@ -227,7 +227,10 @@ export default class App extends Component {
             </div>
           </div>
           {/* COUNTDOWN TIMER */}
-          <CountdownUnits countdownUnits={this.state.countdown} countdownStyle={this.state.countdownStyle} />
+          <div className="countdown" style={this.state.countdownStyle}>
+            <p>Countdown ends in...</p>
+            {this.state.countdown.map((countdownUnit, index) => <CountdownUnit key={index} countdownUnit={countdownUnit} />)}
+          </div>
           <p className="message info-message" style={this.state.infoStyle}><span className="fa fa-info-circle fa-lg fa-fw"></span> {this.state.infoMessage}</p>
         </main>
         {/* FOOTER */}
