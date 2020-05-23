@@ -134,6 +134,14 @@ textarea:focus,
   }
 }
 
+.button-group {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .message {
   border-radius: 5px;
   line-height: 1.55;
@@ -177,30 +185,38 @@ textarea:focus,
 // SPECIFIC ELEMENT STYLES
 
 header {
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  padding: 10px;
   .header-item {
     font-size: 0.9rem;
     line-height: normal;
     margin: 0;
   }
-  h1 {
-    float: left;
-    padding: 18px 10px;
-  }
-  .button-group {
-    float: right;
-    padding: 10px 5px;
-    .header-button,
-    .header-button:hover,
-    .header-button:active,
-    .header-button:focus {
-      background: $mint;
-      border: 2px solid $mint;
-      color: change-color($black, $lightness: 20%);
-      margin: 0 4px;
-      &:hover {
-        background: transparent;
-        color: $mint;
-      }
+  .header-button,
+  .header-button:hover,
+  .header-button:active,
+  .header-button:focus {
+    background: $mint;
+    border: 2px solid $mint;
+    color: change-color($black, $lightness: 20%);
+    margin: 0 4px;
+    &:hover {
+      background: transparent;
+      color: $mint;
     }
   }
 }
@@ -244,7 +260,11 @@ header {
         }
       }
       .button-group {
-        text-align: right;
+        -webkit-box-pack: end;
+        -moz-box-pack: end;
+        -ms-flex-pack: end;
+        -webkit-justify-content: flex-end;
+        justify-content: flex-end;
         .modal-button,
         .modal-button:hover,
         .modal-button:active,

@@ -187,7 +187,7 @@ export default class App extends Component {
         {/* HEADER */}
         <header>
           <h1 className="header-item">Countdown Timer</h1>
-          <div className="header-item button-group">
+          <div className="button-group header-item">
             <button type="button" className="button header-button clear" onClick={() => this.clearCountdown()}>Clear</button>
             <button type="button" className="button header-button settings" onClick={() => this.openModal()}>Settings</button>
           </div>
