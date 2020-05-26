@@ -14,9 +14,25 @@ html {
     padding: 0 20px;
     position: relative; }
     html body header {
+      -webkit-box-align: center;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
       background: #333333;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -moz-box-pack: justify;
+      -ms-flex-pack: justify;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
       left: 0;
       position: fixed;
+      padding: 10px;
       right: 0;
       top: 0;
       width: 100%;
@@ -164,41 +180,25 @@ textarea:focus,
   .select-wrapper select::-ms-expand {
     display: none; }
 
-header {
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -moz-box-pack: justify;
-  -ms-flex-pack: justify;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
-  padding: 10px; }
-  header .header-item {
-    font-size: 0.9rem;
-    line-height: normal;
-    margin: 0; }
-  header .header-button,
-  header .header-button:hover,
-  header .header-button:active,
-  header .header-button:focus {
-    background: #00ffcc;
-    border: 2px solid #00ffcc;
-    color: #333333;
-    margin: 0 4px; }
-    header .header-button:hover,
-    header .header-button:hover:hover,
-    header .header-button:active:hover,
-    header .header-button:focus:hover {
-      background: transparent;
-      color: #00ffcc; }
+.header-item {
+  font-size: 0.9rem;
+  line-height: normal;
+  margin: 0; }
+
+.header-button,
+.header-button:hover,
+.header-button:active,
+.header-button:focus {
+  background: #00ffcc;
+  border: 2px solid #00ffcc;
+  color: #333333;
+  margin: 0 4px; }
+  .header-button:hover,
+  .header-button:hover:hover,
+  .header-button:active:hover,
+  .header-button:focus:hover {
+    background: transparent;
+    color: #00ffcc; }
 
 .modal {
   background: rgba(0, 0, 0, 0.75);
