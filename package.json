@@ -23,16 +23,17 @@
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "css-loader": "^2.1.0",
+    "css-loader": "^2.1.1",
     "mini-css-extract-plugin": "^0.5.0",
-    "moment": "^2.24.0",
-    "node-sass": "^4.14.0",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "sass-loader": "^7.1.0",
+    "moment": "^2.27.0",
+    "node-sass": "^4.14.1",
+    "normalize.css": "^5.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "sass-loader": "^7.3.1",
     "style-loader": "^0.23.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.10.3"
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
