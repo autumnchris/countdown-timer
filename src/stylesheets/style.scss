@@ -297,16 +297,26 @@ textarea:focus,
   }
 }
 
+.error-message {
+  background: change-color($error-red, $lightness: 95%);
+  border: 1px solid change-color($error-red, $lightness: 90%);
+  color: $error-red;
+}
+
 .info-message {
   background: change-color($info-blue, $lightness: 95%);
   border: 1px solid change-color($info-blue, $lightness: 90%);
   color: $info-blue;
 }
 
-.error-message {
-  background: change-color($error-red, $lightness: 95%);
-  border: 1px solid change-color($error-red, $lightness: 90%);
-  color: $error-red;
+noscript .info-message {
+  left: 50%;
+  margin: 0 auto;
+  min-width: 280px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes slideIn {
