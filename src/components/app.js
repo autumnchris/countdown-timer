@@ -1,42 +1,43 @@
-import React, { Component } from 'react';
-import CountdownUnit from './countdown-unit';
+import React from 'react';
 import moment from 'moment';
+import SettingsModal from './settings-modal';
+import Countdown from './countdown';
 
-export default class App extends Component {
+class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      countdown: [
-        {
-          unit: 'days',
-          value: ''
-        },
-        {
-          unit: 'hours',
-          value: ''
-        },
-        {
-          unit: 'mins',
-          value: ''
-        },
-        {
-          unit: 'secs',
-          value: ''
-        }
-      ],
-      dateInput: '',
-      timeInput: '',
-      ampm: 'am',
-      modalStyle: {display: 'none'},
-      countdownStyle: {display: 'none'},
+      dateValue: '',
+      timeValue: '',
+      ampmValue: 'am',
+      countdown: {
+        days: '',
+        hours: '',
+        mins: '',
+        secs: ''
+      },
+      isCountdownSet: true,
+      isModalOpen: false,
       infoMessage: '',
-      infoStyle: {display: 'none'},
-      errorMessage: '',
-      errorStyle: {display: 'none'}
+      settingsFormError: false,
+      errorMessage: ''
     };
     this.timer = null;
-    this.endDate = JSON.parse(localStorage.getItem('countdownTimer')) || '';
+    this.countDownDate = {
+      dateValue: this.state.dateValue,
+      timeValue: this.state.timeValue,
+      ampmValue: this.state.ampmValue,
+      unixEndDate: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.showModal = this.showModal.bind(this);
+  }
+
+  renderCountdownDate(countDownDate) {
+    countDownDate ? localStorage.setItem('countDownDate', JSON.stringify(countDownDate)): null;
+    return JSON.parse(localStorage.getItem('countDownDate')) || this.countDownDate;
   }
 
   handleChange(event) {
@@ -45,197 +46,138 @@ export default class App extends Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit(event, dateValue, timeValue, ampmValue) {
     event.preventDefault();
-    this.endDate = moment(`${this.state.dateInput} ${this.state.timeInput} ${this.state.ampm}`, 'MM-DD-YYYY hh:mm a').format('X');
+    const unixEndDate = Number(moment(`${dateValue} ${timeValue} ${ampmValue}`, 'MM-DD-YYYY hh:mm A').format('X'));
 
-    if ((this.endDate - moment().format('X')) < 1) {
+    if ((unixEndDate - moment().format('X')) < 1) {
       this.setState({
-        errorMessage: 'The countdown must be set to a future date.',
-        errorStyle: {display: 'block'}
+        settingsFormError: true,
+        errorMessage: 'The countdown must be set to a future date.'
       });
     }
-    else if (!moment(this.state.dateInput, 'MM-DD-YYYY', true).isValid()) {
+    else if (!moment(dateValue, 'MM-DD-YYYY', true).isValid()) {
       this.setState({
-        errorMessage: 'Date input must be a valid date set in MM-DD-YYYY format.',
-        errorStyle: {display: 'block'}
+        settingsFormError: true,
+        errorMessage: 'Date input must be a valid date set in MM-DD-YYYY format.'
       });
     }
-    else if (!moment(this.state.timeInput, 'hh:mm', true).isValid()) {
+    else if (!moment(timeValue, 'hh:mm', true).isValid()) {
       this.setState({
-        errorMessage: 'Time input must be valid according to the 12-hour clock set in hh:mm format.',
-        errorStyle: {display: 'block'}
+        settingsFormError: true,
+        errorMessage: 'Time input must be valid according to the 12-hour clock set in hh:mm format.'
       });
     }
     else {
-      this.startCountdown();
-      this.closeModal();
+      this.startCountdown(this.renderCountdownDate({
+        dateValue,
+        timeValue,
+        ampmValue,
+        unixEndDate
+      }));
+      this.showModal(false);
+    }
+  }
+
+  startCountdown(endDate) {
+    clearInterval(this.timer);
+    this.timer = null;
+
+    if (endDate.unixEndDate !== '') {
+      this.timer = setInterval(() => this.playTimer(endDate.unixEndDate), 1000);
+    }
+    else {
       this.setState({
-        dateInput: '',
-        timeInput: '',
-        ampm: 'am'
+        isCountdownSet: false,
+        infoMessage: 'Click the Settings button to start a new countdown.'
       });
     }
   }
 
-  startCountdown() {
-    localStorage.setItem('countdownTimer', JSON.stringify(this.endDate));
-    let countdown = this.state.countdown;
-    let distance;
+  playTimer(unixEndDate) {
+    const distance = unixEndDate - moment().format('X');
 
-    clearInterval(this.timer);
-
-    if (this.endDate !== '') {
-      this.timer = setInterval(() => {
-        distance = this.endDate - moment().format('X');
-
-        if (distance > 0) {
-          // Days
-          countdown[0]['value'] = parseInt(distance / (60 * 60 * 24), 10);
-          // Hours
-          countdown[1].value = parseInt(distance % (60 * 60 * 24) / (60 * 60), 10);
-          // Minutes
-          countdown[2].value = parseInt(distance % (60 * 60) / (60), 10);
-          // Seconds
-          countdown[3].value = parseInt(distance % 60, 10);
-          this.setState({
-            countdown,
-            countdownStyle: {display: 'block'},
-            infoStyle: {display: 'none'}
-          });
-        }
-        else {
-          countdown = countdown.map(unit => {
-            unit.value = '';
-            return unit;
-          });
-          clearInterval(this.timer);
-          this.setState({
-            countdown,
-            countdownStyle: {display: 'none'},
-            infoMessage: 'Countdown ended. Click the Settings button to start a new countdown.',
-            infoStyle: {display: 'block'}
-          });
-          this.endDate = '';
-          localStorage.setItem('countdownTimer', JSON.stringify(this.endDate));
-        }
-      });
+    if (distance > 0) {
       this.setState({
-        errorMessage: '',
-        errorStyle: {display: 'none'}
+        countdown: {
+          days: parseInt(distance / (60 * 60 * 24), 10),
+          hours: parseInt(distance % (60 * 60 * 24) / (60 * 60), 10),
+          mins: parseInt(distance % (60 * 60) / (60), 10),
+          secs: parseInt(distance % 60, 10)
+        },
+        isCountdownSet: true,
+        infoMessage: ''
       });
     }
     else {
+      clearInterval(this.timer);
+      this.timer = null;
+      this.renderCountdownDate(this.countDownDate);
       this.setState({
-        infoMessage: 'Click the Settings button to start a new countdown.',
-        infoStyle: {display: 'block'}
+        isCountdownSet: false,
+        infoMessage: 'Countdown ended. Click the Settings button to start a new countdown.'
       });
     }
   }
 
   clearCountdown() {
-    let countdown = this.state.countdown;
 
-    if (this.endDate !== '') {
+    if (this.renderCountdownDate().unixEndDate !== '') {
 
       if (confirm('Are you sure you want to clear your currently running countdown?')) {
         clearInterval(this.timer);
-        countdown = countdown.map(unit => {
-          unit.value = '';
-          return unit;
-        });
+        this.timer = null;
         this.setState({
-          countdown,
-          countdownStyle: {display: 'none'},
+          isCountdownSet: false,
           infoMessage: 'Countdown cleared. Click the Settings button to start a new countdown.',
-          infoStyle: {display: 'block'}
         });
-        this.endDate = '';
-        localStorage.setItem('countdownTimer', JSON.stringify(this.endDate));
+        this.renderCountdownDate(this.countDownDate);
       }
     }
     else {
-      alert('No countdown has been set. Please click the Settings button to start a new countdown.')
+      alert('No countdown has been set. Please click the Settings button to start a new countdown.');
     }
   }
 
-  openModal() {
+  showModal(status) {
     this.setState({
-      modalStyle: {display: 'block'}
-    });
-  }
-
-  closeModal() {
-    this.setState({
-      modalStyle: {display: 'none'}
+      dateValue: this.renderCountdownDate().dateValue,
+      timeValue: this.renderCountdownDate().timeValue,
+      ampmValue: this.renderCountdownDate().ampmValue,
+      isModalOpen: status,
+      settingsFormError: false
     });
   }
 
   componentDidMount() {
-    this.startCountdown();
-    window.addEventListener('click', (event) => {
+    this.startCountdown(this.renderCountdownDate());
+
+    window.addEventListener('click', event => {
 
       if (event.target.id === 'modal') {
-        this.closeModal();
+        this.showModal(false);
       }
     });
   }
 
   render() {
     return (
-      <div className="body">
-        {/* HEADER */}
+      <React.Fragment>
         <header>
           <h1 className="header-item">Countdown Timer</h1>
           <div className="button-group header-item">
             <button type="button" className="button header-button clear" onClick={() => this.clearCountdown()}>Clear</button>
-            <button type="button" className="button header-button settings" onClick={() => this.openModal()}>Settings</button>
+            <button type="button" className="button header-button settings" onClick={() => this.showModal(true)}>Settings</button>
           </div>
         </header>
         <main>
-          {/* SETTINGS MODAL */}
-          <div className="modal" id="modal" style={this.state.modalStyle}>
-            <div className="modal-content">
-              <div className="modal-header">Set New Countdown</div>
-              <div className="modal-body">
-                <form onSubmit={(event) => this.handleSubmit(event)}>
-                  <div className="form-group">
-                    <label htmlFor="date-input">Date</label>
-                    <input type="text" name="dateInput" onChange={(event) => this.handleChange(event)} value={this.state.dateInput} placeholder="MM-DD-YYYY" id="date-input" required />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="time-input">Time</label>
-                    <input type="text" name="timeInput" onChange={(event) => this.handleChange(event)} value={this.state.timeInput} placeholder="hh:mm" id="time-input" required />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="ampm-input">AM/PM</label>
-                    <div className="select-wrapper">
-                      <select name="ampm" onChange={(event) => this.handleChange(event)} value={this.state.ampm} id="ampm-input">
-                        <option value="am">AM</option>
-                        <option value="pm">PM</option>
-                      </select>
-                    </div>
-                  </div>
-                  {/* ERROR MESSAGE */}
-                  <p className="message error-message" style={this.state.errorStyle}><span className="fa fa-exclamation-circle fa-lg fa-fw"></span> {this.state.errorMessage}</p>
-                  <div className="button-group">
-                    <input type="submit" className="button modal-button" value="Start" />
-                    <input type="button" className="button modal-button" onClick={() => this.closeModal()} value="Cancel" />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          {/* COUNTDOWN TIMER */}
-          <div className="countdown" style={this.state.countdownStyle}>
-            <p>Countdown ends in...</p>
-            {this.state.countdown.map((countdownUnit, index) => <CountdownUnit key={index} countdownUnit={countdownUnit} />)}
-          </div>
-          <p className="message info-message" style={this.state.infoStyle}><span className="fa fa-info-circle fa-lg fa-fw"></span> {this.state.infoMessage}</p>
+          {this.state.isModalOpen ? <SettingsModal dateValue={this.state.dateValue} timeValue={this.state.timeValue} ampmValue={this.state.ampmValue} handleChange={this.handleChange} handleSubmit={this.handleSubmit} settingsFormError={this.state.settingsFormError} errorMessage={this.state.errorMessage} showModal={this.showModal} /> : null}
+          {this.state.isCountdownSet ? <Countdown countdown={this.state.countdown} unixEndDate={this.renderCountdownDate().unixEndDate} /> : <p className="message info-message"><span className="fa fa-info-circle fa-lg fa-fw"></span> {this.state.infoMessage}</p>}
         </main>
-        {/* FOOTER */}
         <footer>Created by <a href="https://autumnbullard-portfolio.herokuapp.com" target="_blank">Autumn Bullard</a> &copy; {new Date().getFullYear()}</footer>
-      </div>
+      </React.Fragment>
     );
   }
 }
+
+export default App;
