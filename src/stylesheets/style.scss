@@ -182,20 +182,19 @@ textarea:focus,
     right: 10px;
     top: 10px;
   }
-}
-
-.select-wrapper select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  background: transparent;
-  border: 0;
-  border-radius: inherit;
-  color: inherit;
-  cursor: pointer;
-  &::-ms-expand {
-    display: none;
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-radius: inherit;
+    color: inherit;
+    cursor: pointer;
+    &::-ms-expand {
+      display: none;
+    }
   }
 }
 
