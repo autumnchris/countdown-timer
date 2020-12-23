@@ -36,7 +36,7 @@ class App extends React.Component {
   }
 
   renderCountdownDate(countDownDate) {
-    countDownDate ? localStorage.setItem('countDownDate', JSON.stringify(countDownDate)): null;
+    countDownDate ? localStorage.setItem('countDownDate', JSON.stringify(countDownDate)) : null;
     return JSON.parse(localStorage.getItem('countDownDate')) || this.countDownDate;
   }
 
@@ -50,13 +50,7 @@ class App extends React.Component {
     event.preventDefault();
     const unixEndDate = Number(moment(`${dateValue} ${timeValue} ${ampmValue}`, 'MM-DD-YYYY hh:mm A').format('X'));
 
-    if ((unixEndDate - moment().format('X')) < 1) {
-      this.setState({
-        settingsFormError: true,
-        errorMessage: 'The countdown must be set to a future date.'
-      });
-    }
-    else if (!moment(dateValue, 'MM-DD-YYYY', true).isValid()) {
+    if (!moment(dateValue, 'MM-DD-YYYY', true).isValid()) {
       this.setState({
         settingsFormError: true,
         errorMessage: 'Date input must be a valid date set in MM-DD-YYYY format.'
@@ -66,6 +60,12 @@ class App extends React.Component {
       this.setState({
         settingsFormError: true,
         errorMessage: 'Time input must be valid according to the 12-hour clock set in hh:mm format.'
+      });
+    }
+    else if ((unixEndDate - moment().format('X')) < 1) {
+      this.setState({
+        settingsFormError: true,
+        errorMessage: 'The countdown must be set to a future date.'
       });
     }
     else {
