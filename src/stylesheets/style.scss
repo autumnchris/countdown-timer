@@ -4,6 +4,7 @@
 
 html {
   background: transparent;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: change-color($black, $lightness: 100%);
   font-family: $main-font;
@@ -12,27 +13,23 @@ html {
   text-align: center;
   body {
     background: $black;
+    background: -o-linear-gradient(330deg, $black, change-color($black, $lightness: 18%)) fixed;
     background: linear-gradient(120deg, $black, change-color($black, $lightness: 18%)) fixed;
     min-height: 100%;
+    -ms-scroll-chaining: none;
     overscroll-behavior: none;
     padding: 0 20px;
     position: relative;
     header {
-      -webkit-box-align: center;
-      -moz-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-      background: change-color($black, $lightness: 20%);
       display: -webkit-box;
-      display: -moz-box;
-      display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      background: change-color($black, $lightness: 20%);
       -webkit-box-pack: justify;
-      -moz-box-pack: justify;
       -ms-flex-pack: justify;
-      -webkit-justify-content: space-between;
       justify-content: space-between;
       left: 0;
       position: fixed;
@@ -62,6 +59,7 @@ html {
     h4,
     h5,
     h6 {
+      -webkit-box-sizing: border-box;
       box-sizing: border-box;
       margin-top: 0;
     }
@@ -83,6 +81,7 @@ button,
 button:hover,
 button:active,
 button:focus {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -106,6 +105,18 @@ select {
   line-height: 1.3;
   padding: 8px;
   width: 100%;
+  &::-webkit-input-placeholder {
+    color: change-color($black, $lightness: 60%);
+  }
+  &::-moz-placeholder {
+    color: change-color($black, $lightness: 60%);
+  }
+  &:-ms-input-placeholder {
+    color: change-color($black, $lightness: 60%);
+  }
+  &::-ms-input-placeholder {
+    color: change-color($black, $lightness: 60%);
+  }
   &::placeholder {
     color: change-color($black, $lightness: 60%);
   }
@@ -130,6 +141,7 @@ input:focus,
 select:focus,
 textarea:focus,
 [tabindex]:focus {
+  -webkit-box-shadow: 0 0 3px 3px hsla(203, 95%, 62%, 0.8);
   box-shadow: 0 0 3px 3px hsla(203, 95%, 62%, 0.8);
   outline: none;
 }
@@ -153,8 +165,6 @@ textarea:focus,
 
 .button-group {
   display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -232,6 +242,7 @@ textarea:focus,
   width: 100%;
   z-index: 1;
   .modal-content {
+    -webkit-animation: slideIn 0.3s ease-out;
     animation: slideIn 0.3s ease-out;
     background: change-color($black, $lightness: 100%);
     border-radius: 5px;
@@ -260,9 +271,7 @@ textarea:focus,
       }
       .button-group {
         -webkit-box-pack: end;
-        -moz-box-pack: end;
         -ms-flex-pack: end;
-        -webkit-justify-content: flex-end;
         justify-content: flex-end;
         .modal-button,
         .modal-button:hover,
@@ -315,7 +324,18 @@ noscript .info-message {
   position: absolute;
   text-align: center;
   top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+@-webkit-keyframes slideIn {
+  from {
+    margin-top: 0;
+  }
+  to {
+    margin-top: 10%;
+  }
 }
 
 @keyframes slideIn {
