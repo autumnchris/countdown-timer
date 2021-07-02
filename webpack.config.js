@@ -1,25 +1,28 @@
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  context: __dirname,
-  entry: './src/index.js',
   output: {
-    path: `${__dirname}/public`,
-    filename: 'bundle.js',
-    publicPath: '/public/'
+    path: path.join(__dirname, 'docs'),
+    filename: 'index.bundle.js',
+    assetModuleFilename: "assets/[hash][ext][query]"
+  },
+  devtool: "eval-cheap-source-map",
+  devServer: {
+    port: 8080,
+    watchContentBase: true
   },
   module: {
     rules: [
       {
-        test: /\.js|.jsx?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['env', 'react']
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
         }
       },
       {
-        test: /\.css|.scss?$/,
+        test: /\.(sc|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
@@ -28,14 +31,9 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
   plugins: [
-    new MiniCssExtractPlugin({ filename: 'style.css' })
-  ],
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './'
-  }
+    new MiniCssExtractPlugin({
+      filename: 'style.css'
+    })
+  ]
 };
