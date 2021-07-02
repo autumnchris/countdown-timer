@@ -1,6 +1,6 @@
 # Countdown Timer
 
-An app that requires the user to submit a future date which will then display a timer counting down to that date.
+A React.js app that takes a submitted future date and displays a timer counting down to that date.
 
 ---
 
