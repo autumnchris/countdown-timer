@@ -151,14 +151,17 @@ textarea:focus,
 .button:hover,
 .button:active,
 .button:focus {
-  background: transparent;
-  border: 0;
+  background: $mint;
+  border: 2px solid $mint;
   border-radius: 4px;
+  color: change-color($black, $lightness: 20%);
   cursor: pointer;
   line-height: normal;
   padding: 5px 8px;
   width: auto;
   &:hover {
+    background: transparent;
+    color: $mint;
     text-decoration: none;
   }
 }
@@ -220,14 +223,7 @@ textarea:focus,
 .header-button:hover,
 .header-button:active,
 .header-button:focus {
-  background: $mint;
-  border: 2px solid $mint;
-  color: change-color($black, $lightness: 20%);
   margin: 0 4px;
-  &:hover {
-    background: transparent;
-    color: $mint;
-  }
 }
 
 .modal {
@@ -278,6 +274,7 @@ textarea:focus,
         .modal-button:active,
         .modal-button:focus {
           background: change-color($black, $lightness: 20%);
+          border: 0;
           color: $mint;
           margin-left: 8px;
           &:hover {
