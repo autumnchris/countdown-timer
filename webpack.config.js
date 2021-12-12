@@ -5,9 +5,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'docs'),
     filename: 'index.bundle.js',
-    assetModuleFilename: "assets/[hash][ext][query]"
+    assetModuleFilename: 'assets/[hash][ext][query]'
   },
-  devtool: "eval-cheap-source-map",
+  devtool: 'eval-cheap-source-map',
   devServer: {
     port: 8080,
     static: [{
