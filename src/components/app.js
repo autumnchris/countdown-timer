@@ -49,10 +49,6 @@ const App = () => {
     setCountdownSettings(JSON.parse(localStorage.getItem('countdownDate')) || { ...initialCountdownSettings });
   }, [modalVisibility]);
 
-
-  // Consider setting a separate unixEndDate useState()
-  // Update countdownSettings state to calculated field values from timestamp upon modalVisibility change
-
   function playTimer(currentUnixEndDate) {
     const distance = currentUnixEndDate - moment().format('X');
 
