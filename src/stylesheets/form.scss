@@ -1,0 +1,138 @@
+// STYLES FOR SETTINGS FORM
+
+input,
+select {
+  border: 1px solid change-color($black, $lightness: 80%);
+  border-radius: 0;
+  color: change-color($black, $lightness: 20%);
+  letter-spacing: 1px;
+  line-height: 1.3;
+  padding: 8px;
+  width: 100%;
+  &::-webkit-input-placeholder {
+    color: change-color($black, $lightness: 60%);
+  }
+  &::-moz-placeholder {
+    color: change-color($black, $lightness: 60%);
+  }
+  &:-ms-input-placeholder {
+    color: change-color($black, $lightness: 60%);
+  }
+  &::-ms-input-placeholder {
+    color: change-color($black, $lightness: 60%);
+  }
+  &::placeholder {
+    color: change-color($black, $lightness: 60%);
+  }
+}
+
+// Select element styles
+.select-wrapper {
+  background: change-color($black, $lightness: 20%);
+  border-radius: 4px;
+  color: change-color($black, $lightness: 90%);
+  position: relative;
+  &:after {
+    content: "\f0dc";
+    cursor: pointer;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-radius: inherit;
+    color: inherit;
+    cursor: pointer;
+    &::-ms-expand {
+      display: none;
+    }
+  }
+}
+
+// Modal styles
+.modal {
+  background: rgba($black, 0.75);
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  .modal-content {
+    -webkit-animation: slideIn 0.3s ease-out;
+    animation: slideIn 0.3s ease-out;
+    background: change-color($black, $lightness: 100%);
+    border-radius: 5px;
+    color: change-color($black, $lightness: 20%);
+    margin: 10% auto;
+    max-width: 300px;
+    width: 80%;
+    .modal-header {
+      border-bottom: 1px solid change-color($black, $lightness: 80%);
+      padding: 10px;
+      text-align: left;
+    }
+    .modal-body {
+      padding: 15px;
+      .form-group {
+        margin-bottom: 20px;
+        max-width: 200px;
+        label {
+          display: block;
+          font-size: 0.8rem;
+          font-weight: 600;
+          letter-spacing: 2px;
+          margin-bottom: 3px;
+          text-align: left;
+        }
+      }
+      .button-group {
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        .modal-button,
+        .modal-button:hover,
+        .modal-button:active,
+        .modal-button:focus {
+          background: change-color($black, $lightness: 20%);
+          border: 0;
+          color: $mint;
+          margin-left: 8px;
+          &:hover {
+            background: change-color($black, $lightness: 15%);
+          }
+        }
+      }
+    }
+  }
+}
+
+@-webkit-keyframes slideIn {
+  from {
+    margin-top: 0;
+  }
+  to {
+    margin-top: 10%;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    margin-top: 0;
+  }
+  to {
+    margin-top: 10%;
+  }
+}
