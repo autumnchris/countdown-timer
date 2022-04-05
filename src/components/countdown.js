@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-const Countdown = ({ countdownTimer, unixEndDate }) => {
+const Countdown = ({ countdownTimer, unixEndDate, eventName }) => {
 
   return (
     <div className="countdown">
@@ -21,7 +21,7 @@ const Countdown = ({ countdownTimer, unixEndDate }) => {
         <div className="countdown-value">{countdownTimer.secs}</div>
         <div className="countdown-unit">Secs</div>
       </div>
-      <p>Counting down to {moment.unix(unixEndDate).format('dddd, MMMM Do, YYYY | h:mm A')}</p>
+      <p>Counting down to {eventName} on {moment.unix(unixEndDate).format('dddd, MMMM Do, YYYY | h:mm A')}</p>
     </div>
   );
 }

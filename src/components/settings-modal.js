@@ -15,11 +15,15 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
 
   function handleSubmit(event) {
     event.preventDefault();
+    const eventNameValue = countdownSettings.eventNameValue.trim();
     const dateValue = countdownSettings.dateValue.trim();
     const timeValue = countdownSettings.timeValue.trim();
     const unixEndDate = Number(moment(`${dateValue} ${timeValue} ${countdownSettings.ampmValue}`, 'MM-DD-YYYY hh:mm A').format('X'));
 
-    if (!moment(dateValue, 'MM-DD-YYYY', true).isValid()) {
+    if (!eventNameValue) {
+      setSettingsFormErrorMessage('The event name is required');
+    }
+    else if (!moment(dateValue, 'MM-DD-YYYY', true).isValid()) {
       setSettingsFormErrorMessage('Date input must be a valid date set in MM-DD-YYYY format.');
     }
     else if (!moment(timeValue, 'hh:mm', true).isValid()) {
@@ -32,6 +36,7 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
       setCountdownSettings(prevCountdownSettings => {
         return {
           ...prevCountdownSettings,
+          eventNameValue,
           dateValue,
           timeValue,
           unixEndDate
@@ -47,6 +52,10 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
         <div className="modal-header">Set New Countdown</div>
         <div className="modal-body">
           <form onSubmit={(event) => handleSubmit(event)} noValidate>
+            <div className="form-group">
+              <label htmlFor="event-name-value">Event Name</label>
+              <input type="text" name="eventNameValue" onChange={(event) => handleChange(event)} value={countdownSettings.eventNameValue} id="event-name-value" required />
+            </div>
             <div className="form-group">
               <label htmlFor="date-value">Date</label>
               <input type="text" name="dateValue" onChange={(event) => handleChange(event)} value={countdownSettings.dateValue} placeholder="MM-DD-YYYY" id="date-value" required />

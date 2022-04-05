@@ -6,6 +6,7 @@ import InfoMessage from './info-message';
 
 const App = () => {
   const initialCountdownSettings = {
+    eventNameValue: '',
     dateValue: '',
     timeValue: '',
     ampmValue: 'am',
@@ -97,7 +98,7 @@ const App = () => {
       </header>
       <main>
         {modalVisibility && <SettingsModal setModalVisibility={setModalVisibility} countdownSettings={countdownSettings} setCountdownSettings={setCountdownSettings} />}
-        {countdownSettings.unixEndDate ? <Countdown countdownTimer={countdownTimer} unixEndDate={countdownSettings.unixEndDate} /> : <InfoMessage countdownInfoMessage={countdownInfoMessage} />}
+        {countdownSettings.unixEndDate ? <Countdown countdownTimer={countdownTimer} unixEndDate={countdownSettings.unixEndDate} eventName={countdownSettings.eventNameValue} /> : <InfoMessage countdownInfoMessage={countdownInfoMessage} />}
       </main>
       <footer>Created by <a href="https://autumnchris.github.io/portfolio" target="_blank">Autumn Bullard</a> &copy; {new Date().getFullYear()}</footer>
     </React.Fragment>
