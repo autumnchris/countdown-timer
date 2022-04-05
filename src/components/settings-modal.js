@@ -53,19 +53,19 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
         <div className="modal-body">
           <form onSubmit={(event) => handleSubmit(event)} noValidate>
             <div className="form-group">
-              <label htmlFor="event-name-value">Event Name</label>
+              <label htmlFor="event-name-value">Event Name <abbr className="required-field" title="The event name is required." aria-label="required">*</abbr></label>
               <input type="text" name="eventNameValue" onChange={(event) => handleChange(event)} value={countdownSettings.eventNameValue} id="event-name-value" required />
             </div>
             <div className="form-group">
-              <label htmlFor="date-value">Date</label>
+              <label htmlFor="date-value">Date <abbr className="required-field" title="The date is required." aria-label="required">*</abbr></label>
               <input type="text" name="dateValue" onChange={(event) => handleChange(event)} value={countdownSettings.dateValue} placeholder="MM-DD-YYYY" id="date-value" required />
             </div>
             <div className="form-group">
-              <label htmlFor="time-value">Time</label>
+              <label htmlFor="time-value">Time <abbr className="required-field" title="The time is required." aria-label="required">*</abbr></label>
               <input type="text" name="timeValue" onChange={(event) => handleChange(event)} value={countdownSettings.timeValue} placeholder="hh:mm" id="time-value" required />
             </div>
             <div className="form-group">
-              <label htmlFor="ampm-value">AM/PM</label>
+              <label htmlFor="ampm-value">AM/PM <abbr className="required-field" title="Selecting AM or PM is required." aria-label="required">*</abbr></label>
               <div className="select-wrapper">
                 <select name="ampmValue" onChange={(event) => handleChange(event)} value={countdownSettings.ampmValue} id="ampm-value" required>
                   <option value="am">AM</option>

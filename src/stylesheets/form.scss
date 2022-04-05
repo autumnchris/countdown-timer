@@ -58,6 +58,16 @@ select {
   }
 }
 
+// Required input styles
+.required-field {
+  color: #d40000;
+  cursor: help;
+}
+
+.required-field[title] {
+  text-decoration: none;
+}
+
 // Modal styles
 .modal {
   background: rgba($black, 0.75);
