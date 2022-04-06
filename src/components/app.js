@@ -21,6 +21,7 @@ const App = () => {
 
   const [countdownSettings, setCountdownSettings] = useState(JSON.parse(localStorage.getItem('countdownDate')) || { ...initialCountdownSettings });
   const [countdownTimer, setCountdownTimer] = useState({ ...initialCountdownTimer });
+  const [eventName, setEventName] = useState('');
   const [countdownInfoMessage, setCountdownInfoMessage] = useState('');
   const [modalVisibility, setModalVisibility] = useState(false);
 
@@ -44,7 +45,7 @@ const App = () => {
       clearInterval(timer);
       timer = null;
     }
-  }, [countdownSettings.unixEndDate]);
+  }, [countdownSettings.unixEndDate, eventName]);
 
   useEffect(() => {
     setCountdownSettings(JSON.parse(localStorage.getItem('countdownDate')) || { ...initialCountdownSettings });
@@ -97,8 +98,8 @@ const App = () => {
         </div>
       </header>
       <main>
-        {modalVisibility && <SettingsModal setModalVisibility={setModalVisibility} countdownSettings={countdownSettings} setCountdownSettings={setCountdownSettings} />}
-        {countdownSettings.unixEndDate ? <Countdown countdownTimer={countdownTimer} unixEndDate={countdownSettings.unixEndDate} eventName={countdownSettings.eventNameValue} /> : <InfoMessage countdownInfoMessage={countdownInfoMessage} />}
+        {modalVisibility && <SettingsModal setModalVisibility={setModalVisibility} countdownSettings={countdownSettings} setCountdownSettings={setCountdownSettings} setEventName={setEventName} />}
+        {countdownSettings.unixEndDate ? <Countdown countdownTimer={countdownTimer} unixEndDate={countdownSettings.unixEndDate} eventName={eventName} /> : <InfoMessage countdownInfoMessage={countdownInfoMessage} />}
       </main>
       <footer>Created by <a href="https://autumnchris.github.io/portfolio" target="_blank">Autumn Bullard</a> &copy; {new Date().getFullYear()}</footer>
     </React.Fragment>

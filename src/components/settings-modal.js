@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 
-const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSettings }) => {
+const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSettings, setEventName }) => {
   const [settingsFormErrorMessage, setSettingsFormErrorMessage] = useState('');
 
   function handleChange(event) {
@@ -17,8 +17,11 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
     event.preventDefault();
     const eventNameValue = countdownSettings.eventNameValue.trim();
     const dateValue = countdownSettings.dateValue.trim();
-    const timeValue = countdownSettings.timeValue.trim();
-    const unixEndDate = Number(moment(`${dateValue} ${timeValue} ${countdownSettings.ampmValue}`, 'MM-DD-YYYY hh:mm A').format('X'));
+    let timeValue = countdownSettings.timeValue.trim();
+    let ampmValue = countdownSettings.ampmValue;
+    let unixEndDate;
+    console.log(timeValue);
+    console.log(ampmValue);
 
     if (!eventNameValue) {
       setSettingsFormErrorMessage('The event name is required');
@@ -26,23 +29,35 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
     else if (!moment(dateValue, 'MM-DD-YYYY', true).isValid()) {
       setSettingsFormErrorMessage('Date input must be a valid date set in MM-DD-YYYY format.');
     }
-    else if (!moment(timeValue, 'hh:mm', true).isValid()) {
+    else if (timeValue && !moment(timeValue, 'hh:mm', true).isValid()) {
       setSettingsFormErrorMessage('Time input must be valid according to the 12-hour clock set in hh:mm format.');
     }
-    else if ((unixEndDate - moment().format('X')) < 1) {
-      setSettingsFormErrorMessage('The countdown date must be set to a future date.');
-    }
     else {
-      setCountdownSettings(prevCountdownSettings => {
-        return {
-          ...prevCountdownSettings,
-          eventNameValue,
-          dateValue,
-          timeValue,
-          unixEndDate
-        };
-      });
-      setModalVisibility(false);
+
+      if (!timeValue) {
+        timeValue = '12:00';
+        ampmValue = 'am';
+      }
+
+      unixEndDate = Number(moment(`${dateValue} ${timeValue} ${ampmValue}`, 'MM-DD-YYYY hh:mm A').format('X'));
+      
+      if ((unixEndDate - moment().format('X')) < 1) {
+        setSettingsFormErrorMessage('The countdown date must be set to a future date.');
+      }
+      else {
+        setCountdownSettings(prevCountdownSettings => {
+          return {
+            ...prevCountdownSettings,
+            eventNameValue,
+            dateValue,
+            timeValue,
+            ampmValue,
+            unixEndDate
+          };
+        });
+        setEventName(eventNameValue);
+        setModalVisibility(false);
+      }
     }
   }
 
@@ -61,13 +76,13 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
               <input type="text" name="dateValue" onChange={(event) => handleChange(event)} value={countdownSettings.dateValue} placeholder="MM-DD-YYYY" id="date-value" required />
             </div>
             <div className="form-group">
-              <label htmlFor="time-value">Time <abbr className="required-field" title="The time is required." aria-label="required">*</abbr></label>
-              <input type="text" name="timeValue" onChange={(event) => handleChange(event)} value={countdownSettings.timeValue} placeholder="hh:mm" id="time-value" required />
+              <label htmlFor="time-value">Time</label>
+              <input type="text" name="timeValue" onChange={(event) => handleChange(event)} value={countdownSettings.timeValue} placeholder="hh:mm" id="time-value" />
             </div>
             <div className="form-group">
-              <label htmlFor="ampm-value">AM/PM <abbr className="required-field" title="Selecting AM or PM is required." aria-label="required">*</abbr></label>
+              <label htmlFor="ampm-value">AM/PM</label>
               <div className="select-wrapper">
-                <select name="ampmValue" onChange={(event) => handleChange(event)} value={countdownSettings.ampmValue} id="ampm-value" required>
+                <select name="ampmValue" onChange={(event) => handleChange(event)} value={countdownSettings.ampmValue} id="ampm-value">
                   <option value="am">AM</option>
                   <option value="pm">PM</option>
                 </select>
