@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import SettingsModal from './settings-modal';
-import Countdown from './countdown';
-import InfoMessage from './info-message';
+import SettingsModal from './Settings-Modal';
+import Countdown from './Countdown';
+import InfoMessage from './Info-Message';
 
 const App = () => {
   const initialCountdownSettings = {
