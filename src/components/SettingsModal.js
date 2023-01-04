@@ -20,8 +20,6 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
     let timeValue = countdownSettings.timeValue.trim();
     let ampmValue = countdownSettings.ampmValue;
     let unixEndDate;
-    console.log(timeValue);
-    console.log(ampmValue);
 
     if (!eventNameValue) {
       setSettingsFormErrorMessage('The event name is required');

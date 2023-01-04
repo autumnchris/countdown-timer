@@ -48,6 +48,7 @@ const App = () => {
   }, [countdownSettings.unixEndDate, eventName]);
 
   useEffect(() => {
+    modalVisibility ? document.querySelector('body').classList.add('modal-open') : document.querySelector('body').classList.remove('modal-open');
     setCountdownSettings(JSON.parse(localStorage.getItem('countdownDate')) || { ...initialCountdownSettings });
   }, [modalVisibility]);
 
