@@ -13,12 +13,6 @@ const App = () => {
     ampmValue: 'am',
     unixEndDate: ''
   };
-  // const initialCountdownTimer = {
-  //   days: '',
-  //   hours: '',
-  //   minutes: '',
-  //   seconds: ''
-  // };
 
   const [countdownSettings, setCountdownSettings] = useState(JSON.parse(localStorage.getItem('countdownDate')) || { ...initialCountdownSettings });
   const [countdownTimer, setCountdownTimer] = useState(null);
@@ -57,15 +51,6 @@ const App = () => {
     const distance = currentUnixEndDate - moment().format('X');
 
     if (distance > 0) {
-      // setCountdownTimer(prevCountdownTimer => {
-      //   return {
-      //     ...prevCountdownTimer,
-      //     days: parseInt(distance / (60 * 60 * 24), 10),
-      //     hours: parseInt(distance % (60 * 60 * 24) / (60 * 60), 10),
-      //     mins: parseInt(distance % (60 * 60) / (60), 10),
-      //     secs: parseInt(distance % 60, 10)
-      //   };
-      // });
       setCountdownTimer({
         days: parseInt(distance / (60 * 60 * 24), 10),
         hours: parseInt(distance % (60 * 60 * 24) / (60 * 60), 10),
@@ -77,7 +62,6 @@ const App = () => {
     else {
       setCountdownInfoMessage('Countdown ended. Click the Settings button to start a new countdown.');
       setCountdownSettings({ ...initialCountdownSettings });
-      //setCountdownTimer({ ...initialCountdownTimer });
       setCountdownTimer(null);
     }
   }
@@ -92,7 +76,6 @@ const App = () => {
       if (confirm('Are you sure you want to clear your currently running countdown?')) {
         setCountdownInfoMessage('Countdown cleared. Click the Settings button to start a new countdown.');
         setCountdownSettings({ ...initialCountdownSettings });
-        //setCountdownTimer({ ...initialCountdownTimer });
         setCountdownTimer(null);
       }
     }
