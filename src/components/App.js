@@ -3,6 +3,7 @@ import moment from 'moment';
 import SettingsModal from './SettingsModal';
 import Countdown from './Countdown';
 import InfoMessage from './InfoMessage';
+import LoadingSpinner from './LoadingSpinner';
 
 const App = () => {
   const initialCountdownSettings = {
@@ -12,15 +13,15 @@ const App = () => {
     ampmValue: 'am',
     unixEndDate: ''
   };
-  const initialCountdownTimer = {
-    days: '',
-    hours: '',
-    minutes: '',
-    seconds: ''
-  };
+  // const initialCountdownTimer = {
+  //   days: '',
+  //   hours: '',
+  //   minutes: '',
+  //   seconds: ''
+  // };
 
   const [countdownSettings, setCountdownSettings] = useState(JSON.parse(localStorage.getItem('countdownDate')) || { ...initialCountdownSettings });
-  const [countdownTimer, setCountdownTimer] = useState({ ...initialCountdownTimer });
+  const [countdownTimer, setCountdownTimer] = useState(null);
   const [eventName, setEventName] = useState('');
   const [countdownInfoMessage, setCountdownInfoMessage] = useState('');
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -56,21 +57,28 @@ const App = () => {
     const distance = currentUnixEndDate - moment().format('X');
 
     if (distance > 0) {
-      setCountdownTimer(prevCountdownTimer => {
-        return {
-          ...prevCountdownTimer,
-          days: parseInt(distance / (60 * 60 * 24), 10),
-          hours: parseInt(distance % (60 * 60 * 24) / (60 * 60), 10),
-          mins: parseInt(distance % (60 * 60) / (60), 10),
-          secs: parseInt(distance % 60, 10)
-        };
+      // setCountdownTimer(prevCountdownTimer => {
+      //   return {
+      //     ...prevCountdownTimer,
+      //     days: parseInt(distance / (60 * 60 * 24), 10),
+      //     hours: parseInt(distance % (60 * 60 * 24) / (60 * 60), 10),
+      //     mins: parseInt(distance % (60 * 60) / (60), 10),
+      //     secs: parseInt(distance % 60, 10)
+      //   };
+      // });
+      setCountdownTimer({
+        days: parseInt(distance / (60 * 60 * 24), 10),
+        hours: parseInt(distance % (60 * 60 * 24) / (60 * 60), 10),
+        mins: parseInt(distance % (60 * 60) / (60), 10),
+        secs: parseInt(distance % 60, 10)
       });
       setCountdownInfoMessage('');
     }
     else {
       setCountdownInfoMessage('Countdown ended. Click the Settings button to start a new countdown.');
       setCountdownSettings({ ...initialCountdownSettings });
-      setCountdownTimer({ ...initialCountdownTimer });
+      //setCountdownTimer({ ...initialCountdownTimer });
+      setCountdownTimer(null);
     }
   }
 
@@ -84,7 +92,8 @@ const App = () => {
       if (confirm('Are you sure you want to clear your currently running countdown?')) {
         setCountdownInfoMessage('Countdown cleared. Click the Settings button to start a new countdown.');
         setCountdownSettings({ ...initialCountdownSettings });
-        setCountdownTimer({ ...initialCountdownTimer });
+        //setCountdownTimer({ ...initialCountdownTimer });
+        setCountdownTimer(null);
       }
     }
   }
@@ -100,7 +109,7 @@ const App = () => {
       </header>
       <main>
         {modalVisibility && <SettingsModal setModalVisibility={setModalVisibility} countdownSettings={countdownSettings} setCountdownSettings={setCountdownSettings} setEventName={setEventName} />}
-        {countdownSettings.unixEndDate ? <Countdown countdownTimer={countdownTimer} unixEndDate={countdownSettings.unixEndDate} eventName={eventName} /> : <InfoMessage countdownInfoMessage={countdownInfoMessage} />}
+        {countdownSettings.unixEndDate && !countdownTimer ? <LoadingSpinner /> : countdownTimer ? <Countdown countdownTimer={countdownTimer} unixEndDate={countdownSettings.unixEndDate} eventName={eventName} /> : <InfoMessage countdownInfoMessage={countdownInfoMessage} />}
       </main>
       <footer>Created by <a href="https://autumnchris.github.io/portfolio" target="_blank">Autumn Bullard</a> &copy; {new Date().getFullYear()}</footer>
     </React.Fragment>

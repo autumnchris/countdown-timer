@@ -57,3 +57,37 @@
     text-transform: capitalize;
   }
 }
+
+// Loading spinner styles
+.loading-spinner {
+  -webkit-animation: spin 0.75s linear infinite;
+  animation: spin 0.75s linear infinite;
+  border: 4px solid change-color($black, $lightness: 100%);
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  height: 30px;
+  margin: 50px auto;
+  width: 30px;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
