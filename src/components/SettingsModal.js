@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 
-const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSettings, setEventName }) => {
+const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSettings }) => {
   const [settingsFormErrorMessage, setSettingsFormErrorMessage] = useState('');
 
   function handleChange(event) {
@@ -20,6 +20,7 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
     let timeValue = countdownSettings.timeValue.trim();
     let ampmValue = countdownSettings.ampmValue;
     let unixEndDate;
+    let eventName = eventNameValue;
 
     if (!eventNameValue) {
       setSettingsFormErrorMessage('The event name is required');
@@ -50,10 +51,10 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
             dateValue,
             timeValue,
             ampmValue,
-            unixEndDate
+            unixEndDate,
+            eventName
           };
         });
-        setEventName(eventNameValue);
         setModalVisibility(false);
       }
     }

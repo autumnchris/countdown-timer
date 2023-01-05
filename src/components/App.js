@@ -10,13 +10,11 @@ const App = () => {
     eventNameValue: '',
     dateValue: '',
     timeValue: '',
-    ampmValue: 'am',
-    unixEndDate: ''
+    ampmValue: 'am'
   };
 
   const [countdownSettings, setCountdownSettings] = useState(JSON.parse(localStorage.getItem('countdownDate')) || { ...initialCountdownSettings });
   const [countdownTimer, setCountdownTimer] = useState(null);
-  const [eventName, setEventName] = useState('');
   const [countdownInfoMessage, setCountdownInfoMessage] = useState('');
   const [modalVisibility, setModalVisibility] = useState(false);
 
@@ -40,7 +38,7 @@ const App = () => {
       clearInterval(timer);
       timer = null;
     }
-  }, [countdownSettings.unixEndDate, eventName]);
+  }, [countdownSettings.unixEndDate, countdownSettings.eventName]);
 
   useEffect(() => {
     modalVisibility ? document.querySelector('body').classList.add('modal-open') : document.querySelector('body').classList.remove('modal-open');
@@ -91,8 +89,8 @@ const App = () => {
         </div>
       </header>
       <main>
-        {modalVisibility && <SettingsModal setModalVisibility={setModalVisibility} countdownSettings={countdownSettings} setCountdownSettings={setCountdownSettings} setEventName={setEventName} />}
-        {countdownSettings.unixEndDate && !countdownTimer ? <LoadingSpinner /> : countdownTimer ? <Countdown countdownTimer={countdownTimer} unixEndDate={countdownSettings.unixEndDate} eventName={eventName} /> : <InfoMessage countdownInfoMessage={countdownInfoMessage} />}
+        {modalVisibility && <SettingsModal setModalVisibility={setModalVisibility} countdownSettings={countdownSettings} setCountdownSettings={setCountdownSettings} />}
+        {countdownSettings.unixEndDate && !countdownTimer ? <LoadingSpinner /> : countdownTimer ? <Countdown countdownTimer={countdownTimer} unixEndDate={countdownSettings.unixEndDate} eventName={countdownSettings.eventName} /> : <InfoMessage countdownInfoMessage={countdownInfoMessage} />}
       </main>
       <footer>Created by <a href="https://autumnchris.github.io/portfolio" target="_blank">Autumn Bullard</a> &copy; {new Date().getFullYear()}</footer>
     </React.Fragment>
