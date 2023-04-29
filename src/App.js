@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import SettingsModal from './SettingsModal';
-import Countdown from './Countdown';
-import InfoMessage from './InfoMessage';
-import LoadingSpinner from './LoadingSpinner';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import SettingsModal from './components/SettingsModal';
+import Countdown from './components/Countdown';
+import InfoMessage from './components/InfoMessage';
+import LoadingSpinner from './components/LoadingSpinner';
+import getCountdownDate from './utils/getCountdownDate';
 
 const App = () => {
   const initialCountdownSettings = {
@@ -13,7 +16,7 @@ const App = () => {
     ampmValue: 'am'
   };
 
-  const [countdownSettings, setCountdownSettings] = useState(JSON.parse(localStorage.getItem('countdownDate')) || { ...initialCountdownSettings });
+  const [countdownSettings, setCountdownSettings] = useState({ ...getCountdownDate() });
   const [countdownTimer, setCountdownTimer] = useState(null);
   const [countdownInfoMessage, setCountdownInfoMessage] = useState('');
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -32,7 +35,7 @@ const App = () => {
     if (countdownSettings.unixEndDate) {
       timer = setInterval(() => playTimer(countdownSettings.unixEndDate), 1000);
     }
-    localStorage.setItem('countdownDate', JSON.stringify(countdownSettings));
+    getCountdownDate(countdownSettings);
 
     return () => {
       clearInterval(timer);
@@ -42,7 +45,7 @@ const App = () => {
 
   useEffect(() => {
     modalVisibility ? document.querySelector('body').classList.add('modal-open') : document.querySelector('body').classList.remove('modal-open');
-    setCountdownSettings(JSON.parse(localStorage.getItem('countdownDate')) || { ...initialCountdownSettings });
+    setCountdownSettings(getCountdownDate());
   }, [modalVisibility]);
 
   function playTimer(currentUnixEndDate) {
@@ -81,18 +84,12 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <header>
-        <h1 className="header-item">Countdown Timer</h1>
-        <div className="button-group header-item">
-          <button type="button" className="button header-button clear" onClick={() => clearCountdown()}>Clear</button>
-          <button type="button" className="button header-button settings" onClick={() => setModalVisibility(true)}>Settings</button>
-        </div>
-      </header>
+      <Header clearCountdown={clearCountdown} setModalVisibility={setModalVisibility} />
       <main>
         {modalVisibility && <SettingsModal setModalVisibility={setModalVisibility} countdownSettings={countdownSettings} setCountdownSettings={setCountdownSettings} />}
-        {countdownSettings.unixEndDate && !countdownTimer ? <LoadingSpinner /> : countdownTimer ? <Countdown countdownTimer={countdownTimer} unixEndDate={countdownSettings.unixEndDate} eventName={countdownSettings.eventName} /> : <InfoMessage countdownInfoMessage={countdownInfoMessage} />}
+        {countdownSettings.unixEndDate && !countdownTimer ? <LoadingSpinner /> : countdownTimer ? <Countdown countdownTimer={countdownTimer} unixEndDate={countdownSettings.unixEndDate} eventName={countdownSettings.eventName} /> : <InfoMessage messageText={countdownInfoMessage} />}
       </main>
-      <footer>Created by <a href="https://autumnchris.github.io/portfolio" target="_blank">Autumn Bullard</a> &copy; {new Date().getFullYear()}</footer>
+      <Footer />
     </React.Fragment>
   );
 }

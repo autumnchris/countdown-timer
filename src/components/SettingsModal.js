@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import ErrorMessage from './ErrorMessage';
 
 const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSettings }) => {
   const [settingsFormErrorMessage, setSettingsFormErrorMessage] = useState('');
@@ -92,7 +93,7 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
               <button type="button" className="button modal-button" onClick={() => setModalVisibility(false)}>Cancel</button>
             </div>
           </form>
-          {settingsFormErrorMessage ? <p className="message error-message"><span className="fa fa-exclamation-circle fa-lg fa-fw"></span> {settingsFormErrorMessage}</p>: null}
+          {settingsFormErrorMessage && <ErrorMessage messageText={settingsFormErrorMessage} />}
         </div>
       </div>
     </div>
