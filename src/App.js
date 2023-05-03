@@ -27,7 +27,11 @@ const App = () => {
     window.addEventListener('click', event => {
       if (event.target.id === 'modal') setModalVisibility(false);
     });
-  }, []);
+
+    window.addEventListener('keydown', event => {
+      if (modalVisibility && event.key === 'Escape') setModalVisibility(false);
+    });
+  }, [modalVisibility]);
 
   useEffect(() => {
     let timer = null;
