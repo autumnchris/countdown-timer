@@ -22,15 +22,17 @@ const App = () => {
   const [modalVisibility, setModalVisibility] = useState(false);
 
   useEffect(() => {
-    if (!countdownSettings.unixEndDate) setCountdownInfoMessage('Click the Settings button to start a new countdown.');
+    if(!countdownSettings.unixEndDate) setCountdownInfoMessage('Click the Settings button to start a new countdown.');
 
     window.addEventListener('click', event => {
-      if (event.target.id === 'modal') setModalVisibility(false);
+      if(event.target.id === 'modal') setModalVisibility(false);
     });
 
     window.addEventListener('keydown', event => {
-      if (modalVisibility && event.key === 'Escape') setModalVisibility(false);
+      if(modalVisibility && event.key === 'Escape') setModalVisibility(false);
     });
+
+    modalVisibility ? document.querySelector('body').classList.add('modal-open') : document.querySelector('body').classList.remove('modal-open');
   }, [modalVisibility]);
 
   useEffect(() => {
@@ -48,7 +50,6 @@ const App = () => {
   }, [countdownSettings.unixEndDate, countdownSettings.eventName]);
 
   useEffect(() => {
-    modalVisibility ? document.querySelector('body').classList.add('modal-open') : document.querySelector('body').classList.remove('modal-open');
     setCountdownSettings(getCountdownDate());
   }, [modalVisibility]);
 
