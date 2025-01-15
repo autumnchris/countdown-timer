@@ -7,6 +7,10 @@ A React.js app that takes a submitted future date and displays a timer counting 
 ## Built With
 * [React.js](https://reactjs.org)
 * [Sass](http://sass-lang.com)
+* JavaScript
+* CSS3
+* HTML5
+* [Node.js](https://nodejs.org/en)
 * [Webpack](https://webpack.js.org)
 * [Moment.js](https://momentjs.com)
 * LocalStorage
