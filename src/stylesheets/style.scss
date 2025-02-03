@@ -74,9 +74,8 @@ a:hover,
 a:active,
 a:focus {
   color: $mint;
-  text-decoration: none;
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 }
 
