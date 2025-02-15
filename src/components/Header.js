@@ -6,8 +6,8 @@ const Header = ({ clearCountdown, setModalVisibility }) => {
       <h1 className="header-item">Countdown Timer</h1>
       <aside>
         <div className="button-group header-item">
-          <button type="button" className="button header-button clear" onClick={() => clearCountdown()}>Clear</button>
-          <button type="button" className="button header-button settings" onClick={() => setModalVisibility(true)}>Settings</button>
+          <button type="button" className="button header-button clear" onClick={() => clearCountdown()} aria-label="clear countdown">Clear</button>
+          <button type="button" className="button header-button settings" onClick={() => setModalVisibility(true)} aria-label="countdown settings">Settings</button>
         </div>
       </aside>
     </header>
