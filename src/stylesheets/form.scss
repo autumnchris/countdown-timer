@@ -102,7 +102,6 @@ select {
         label {
           display: block;
           font-size: 0.8rem;
-          font-weight: 600;
           letter-spacing: 2px;
           margin-bottom: 3px;
           text-align: left;
@@ -123,6 +122,12 @@ select {
           &:hover {
             background: change-color($black, $lightness: 15%);
           }
+        }
+        .modal-button[type=submit],
+        .modal-button[type=submit]:hover,
+        .modal-button[type=submit]:active,
+        .modal-button[type=submit]:focus {
+          font-weight: 400;
         }
       }
     }
