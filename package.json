@@ -18,6 +18,7 @@
   },
   "homepage": "https://autumnchris.github.io/countdown-timer",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "moment": "^2.27.0",
     "normalize.css": "^5.0.0",
     "react": "^17.0.2",

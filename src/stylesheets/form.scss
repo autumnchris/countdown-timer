@@ -33,9 +33,9 @@ select {
   color: change-color($black, $lightness: 90%);
   position: relative;
   &:after {
-    content: "\f0dc";
+    content: "\f0d7";
     cursor: pointer;
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 6 Free";
     font-weight: 900;
     pointer-events: none;
     position: absolute;
