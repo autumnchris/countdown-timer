@@ -69,15 +69,15 @@ const SettingsModal = ({ setModalVisibility, countdownSettings, setCountdownSett
           <form onSubmit={(event) => handleSubmit(event)} noValidate>
             <div className="form-group">
               <label htmlFor="event-name-value">Event Name <abbr className="required-field" title="The event name is required." aria-label="required">*</abbr></label>
-              <input type="text" name="eventNameValue" onChange={(event) => handleChange(event)} value={countdownSettings.eventNameValue} id="event-name-value" autoComplete="off" required />
+              <input type="text" name="eventNameValue" onChange={(event) => handleChange(event)} value={countdownSettings.eventNameValue} id="event-name-value" autoComplete="off" autoCapitalize="off" required />
             </div>
             <div className="form-group">
               <label htmlFor="date-value">Date <abbr className="required-field" title="The date is required." aria-label="required">*</abbr></label>
-              <input type="text" name="dateValue" onChange={(event) => handleChange(event)} value={countdownSettings.dateValue} placeholder="MM-DD-YYYY" id="date-value" autoComplete="off" required />
+              <input type="text" name="dateValue" onChange={(event) => handleChange(event)} value={countdownSettings.dateValue} placeholder="MM-DD-YYYY" id="date-value" autoComplete="off" autoCapitalize="off" required />
             </div>
             <div className="form-group">
               <label htmlFor="time-value">Time</label>
-              <input type="text" name="timeValue" onChange={(event) => handleChange(event)} value={countdownSettings.timeValue} placeholder="hh:mm" id="time-value" autoComplete="off" />
+              <input type="text" name="timeValue" onChange={(event) => handleChange(event)} value={countdownSettings.timeValue} placeholder="hh:mm" id="time-value" autoComplete="off" autoCapitalize="off" />
             </div>
             <div className="form-group">
               <label htmlFor="ampm-value">AM/PM</label>
